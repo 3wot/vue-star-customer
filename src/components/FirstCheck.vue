@@ -5,33 +5,77 @@
 			<Header back="true" title="初审"></Header>
 
 			<el-main class="c-main">
-				
 				<div class="sec">
-					
-					<el-form :size="formSize" label-width="120px" label-position="left">
-						<el-row>
+					<p class="main-title"><span class="span-title">输入</span></p>
+					<el-form :size="formSize" label-width="140px" label-position="left">
+						<el-row :gutter="15">
+
+							<el-col :span="12">
+								<el-form-item label="客户姓名" class="label-danger">
+									<el-input v-model="BorrowerName" placeholder="请输入客户姓名"></el-input>
+								</el-form-item>
+							</el-col>
+							<el-col :span="12">
+								<el-form-item label="客户证件号码" class="label-danger">
+									<el-input v-model="BorrowerIDNO" placeholder="请输入客户证件号码"></el-input>
+								</el-form-item>
+							</el-col>
+							<el-col :span="12">
+								<el-form-item label="客户电话">
+									<el-input v-model="BorrowerMobile" placeholder="请输入客户电话"></el-input>
+								</el-form-item>
+							</el-col>
+
+							<el-col :span="12">
+								<el-form-item label="客户配偶姓名">
+									<el-input v-model="BorrowerSpouseName" placeholder="请输入客户配偶姓名"></el-input>
+								</el-form-item>
+							</el-col>
+							<el-col :span="12">
+								<el-form-item label="客户配偶证件号码">
+									<el-input v-model="BorrowerSpouseIDNO" placeholder="请输入客户配偶证件号码"></el-input>
+								</el-form-item>
+							</el-col>
+							<el-col :span="12">
+								<el-form-item label="客户配偶电话">
+									<el-input v-model="BorrowerSpouseMobile" placeholder="请输入客户配偶电话"></el-input>
+								</el-form-item>
+							</el-col>
+							<el-col :span="12">
+								<el-form-item label="企业名称">
+									<el-input v-model="CompanyName" placeholder="请输入企业名称"></el-input>
+								</el-form-item>
+							</el-col>
+							<!-- <el-col :span="12">
+								<el-form-item label="企业证件号码">
+									<el-input v-model="BorrowerMobile" placeholder="请输入企业证件号码"></el-input>
+								</el-form-item>
+							</el-col> -->
+							<el-col :span="12">
+								<el-form-item label="企业电话">
+									<el-input v-model="CompanyPhone" placeholder="请输入企业电话"></el-input>
+								</el-form-item>
+							</el-col>
 							<el-col :span="24">
 								<el-button class="pull-left" type="primary" @click="firstCheck">初审</el-button>
 								<span v-if="loading" class="loading"><i class="el-icon-loading"></i></span>
 							</el-col>
 						</el-row>
+						
+
 					</el-form>
 				</div>
-				
 				<div class="sec">
 					<!-- <p class="main-title"><span class="span-title">表格</span></p> -->
 					<table class="show-table show-table-sm" cellpadding="0" cellspacing="0" border="1">
 						<tbody>
 							<tr>
-								<td colspan="2" rowspan="2">
+								<td colspan="2">
 									<img class="header1" src="../../static/header1.png">
 								</td>
 								<td colspan="5">
 									<span>风控初审表</span>
 								</td>
-							</tr>
-							<tr>
-								<td colspan="5">编号:{{OrderNo || '-'}}</td>
 							</tr>
 							<tr>
 								<td colspan="7">借款相关主体</td>
@@ -207,21 +251,6 @@
 						</tbody>
 					</table>
 					
-
-					<el-form :size="formSize" class="m-t-20" label-width="120px" label-position="left">
-						<el-row :gutter="15">
-
-							<el-col :span="24">
-								<el-form-item label="上传初审表" class="label-danger">
-									<ImgUpload :arr="FirstAuditionImageUrl" :arrc="C_FirstAuditionImageUrl" :max="1"></ImgUpload>
-								</el-form-item>
-							</el-col>
-						</el-row>
-					</el-form>
-				</div>
-
-				<div class="sec">
-					<el-button class="pull-left" type="primary" @click="sub">完成</el-button>
 				</div>
 			</el-main>
 		</el-container>
@@ -236,82 +265,66 @@ import ImgList from './ImgList'
 
 export default {
 	components:{
-	// Button,Field
-	Header, ImgUpload, ImgList
-},
-name: 'FirstCheck',
-data () {
-	return {
-		loading: false,
-		formSize : 'small',
+		Header, ImgUpload, ImgList
+	},
+	name: 'FirstCheck',
+	data () {
+		return {
+			loading: false,
+			formSize : 'small',
 		// 截图
 		FirstAuditionImageUrl: [],
 		C_FirstAuditionImageUrl: [],
 
 		// 初始化
 		"BorrowerIDNO": "",
-        "BorrowerMobile": "",
-        "BorrowerName": "",
-        "BorrowerSpouseIDNO": "",
-        "BorrowerSpouseMobile": "",
-        "BorrowerSpouseName": "",
-        "CompanyName": "",
-        "CompanyPhone": "",
+		"BorrowerMobile": "",
+		"BorrowerName": "",
+		"BorrowerSpouseIDNO": "",
+		"BorrowerSpouseMobile": "",
+		"BorrowerSpouseName": "",
+		"CompanyName": "",
+		"CompanyPhone": "",
 
         // 初审返回
         "SecurityInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
-		"LawsuitInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
-		"EnforcementInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
-		"CreditInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
-		"P2PBlacklistInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
-		"TaxInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
-		"CriminalInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
-		"LoanExpirationInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
-		"MultipointLendingInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
-		"CompanyInfo" : {
-			"BusinessInfo" : "",
-			"AdministrativePenaltyInfo" : "", 
-			"SharePledgeInfo" : "", 
-			"MovablesPledgeInfo" : "", 
-			"TaxOwingInfo" : "", 
-			"JudicialSaleInfo" : "", 
-			"LawsuitInfo" : "", 
-			"CourtAnnouncementInfo" : "", 
-			"TrialInfo" : "", 
-			"CreditEnforcementInfo" : "", 
-			"CourtEnforcementInfo" : "", 
-			"CriminalInfo" : "", 
-			"RiskInfo" : "", 
-			"BusinessScope" : ""
-		},
+        "LawsuitInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
+        "EnforcementInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
+        "CreditInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
+        "P2PBlacklistInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
+        "TaxInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
+        "CriminalInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
+        "LoanExpirationInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
+        "MultipointLendingInfo" : { "Borrower" : "", "BorrowerSpouse" : "" },
+        "CompanyInfo" : {
+        	"BusinessInfo" : "",
+        	"AdministrativePenaltyInfo" : "", 
+        	"SharePledgeInfo" : "", 
+        	"MovablesPledgeInfo" : "", 
+        	"TaxOwingInfo" : "", 
+        	"JudicialSaleInfo" : "", 
+        	"LawsuitInfo" : "", 
+        	"CourtAnnouncementInfo" : "", 
+        	"TrialInfo" : "", 
+        	"CreditEnforcementInfo" : "", 
+        	"CourtEnforcementInfo" : "", 
+        	"CriminalInfo" : "", 
+        	"RiskInfo" : "", 
+        	"BusinessScope" : ""
+        },
 
 		OrderNo: '', // 编号
 
 	}
 },
 mounted () {
-	// console.log(this.$route.params.id)
-	this.init()
 },
 methods:{
 
-
-	gotoLook() {
-		// 调到预报单
-		const id = this.$route.params.id
-		console.log(id)
-		this.$router.push({ name: 'look', params: { id }})
-	},
-	
-	// 首页
-	gotoIndex() {
-		this.$router.push({ name : 'index' })
-	},
-
 	// 初审
 	firstCheck () {
-		const id = this.$route.params.id
-		const oprid = this.$route.params.oprid
+		const id = null
+		const oprid = null
 		const {
 			BorrowerIDNO,
 			BorrowerMobile,
@@ -336,6 +349,10 @@ methods:{
 			BorrowerSpouseName,
 			CompanyName,
 			BorrowerMarriageStatus,
+		}
+		if (!BorrowerIDNO || !BorrowerName) {
+			this.warn('请完成标红的项目！')
+			return
 		}
 		this.loading = true
 		this.pp('AuditBorrowerInfo', param, res => {
@@ -369,79 +386,6 @@ methods:{
 		})
 	},
 
-
-	// 初始化
-	init () {
-		const id = this.$route.params.id
-		// const hid = this.$route.params.hid
-		const param = {
-			OrderId: id,
-			// HouseId: hid,
-		}
-		this.pp('GetAuditBorrowerInfoParams', param, res => {
-			if (res.ret) {
-				const { 
-					BorrowerIDNO,
-					BorrowerMobile,
-					BorrowerName,
-					BorrowerSpouseIDNO,
-					BorrowerSpouseMobile,
-					BorrowerSpouseName,
-					CompanyName,
-					CompanyPhone,
-					OrderNo,
-				} = res.data || {}
-				this.BorrowerIDNO = BorrowerIDNO
-				this.BorrowerMobile = BorrowerMobile
-				this.BorrowerName = BorrowerName
-				this.BorrowerSpouseIDNO = BorrowerSpouseIDNO
-				this.BorrowerSpouseMobile = BorrowerSpouseMobile
-				this.BorrowerSpouseName = BorrowerSpouseName
-				this.CompanyName = CompanyName
-				this.CompanyPhone = CompanyPhone
-				this.OrderNo = OrderNo
-			} else {
-				this.warn(res.msg)
-			}
-		})
-	},
-
-	// 确认
-	sub () {
-		const { id, hid, oprid } = this.$route.params
-		const FirstAuditionImageUrl = this.FirstAuditionImageUrl
-		const C_FirstAuditionImageUrl = this.C_FirstAuditionImageUrl
-
-		if (FirstAuditionImageUrl.length && C_FirstAuditionImageUrl.length) {
-
-		} else {
-			this.warn('请上传初审表！')
-			return
-		}
-		if (UPLOAD_NUM) {
-			this.warn('还有图片正在上传！')
-			return
-		}
-
-		const param = {
-			OrderId: id,
-			// HouseId: hid,
-			OperationRecordId: oprid,
-			FirstAuditionImageUrl:FirstAuditionImageUrl.join(),
-			C_FirstAuditionImageUrl:C_FirstAuditionImageUrl.join(),
-		}
-		console.log(param)
-		this.pp('CompleteAuditBorrowerInfo', param, res => {
-			if (res.ret) {
-				// 跳到操作页面
-				this.$router.push({ name : 'opList', params: { id, hid }})
-			} else {
-				this.warn(res.msg)
-			}
-		})
-	},
-
-
 	// 去详情页面
 	gotoDetail(type) {
 		console.log(type)
@@ -450,29 +394,29 @@ methods:{
 			const id = this.BorrowerIDNO
 			// this.$router.push({ 'name' : 'firstDetail', params: { name, id }})
 			let routeData = this.$router.resolve({
-			   	name: "firstDetail",
+				name: "firstDetail",
 			   	// query: params,
 			   	params:{ name, id }
-			});
+			   });
 			window.open(routeData.href, '_blank')
 		} else if (type == 2) { // 配偶
 			const name = this.BorrowerSpouseName
 			const id = this.BorrowerSpouseIDNO
 			// this.$router.push({ name : 'firstDetail', params: { name, id }})
 			let routeData = this.$router.resolve({
-			   	name: "firstDetail",
+				name: "firstDetail",
 			   	// query: params,
 			   	params:{ name, id }
-			});
+			   });
 			window.open(routeData.href, '_blank')
 		} else if (type == 3) {
 			const name = this.CompanyName
 			// this.$router.push({ name : 'firstDetail', params: { name }})
 			let routeData = this.$router.resolve({
-			   	name: "firstDetail",
+				name: "firstDetail",
 			   	// query: params,
 			   	params:{ name }
-			});
+			   });
 			window.open(routeData.href, '_blank')
 		}
 

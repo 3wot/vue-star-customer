@@ -321,7 +321,6 @@ export default {
 				Floor,
 				BuildingFinishYear,
 			}
-			debugger
 			this.loading = true
 			this.pp('HouseValuation', param, res => {
 				this.loading = false
