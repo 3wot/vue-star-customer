@@ -94,6 +94,7 @@ html,body {
 	min-width: 800px;
 	overflow: auto;
 	/*text-align: left;*/
+	padding: 0px 20px 20px !important;
 }
 .pull-right {
 	float: right;
@@ -150,7 +151,7 @@ html,body {
 .show-table {
 	border: 1px solid #ddd;
     border-collapse: collapse;
-    width: 700px;
+    width: 800px;
     line-height: 1.4;
 }
 .show-table-sm {

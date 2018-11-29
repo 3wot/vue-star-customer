@@ -7,15 +7,15 @@
 			<el-main class="c-main">
 				
 				<div class="sec">
-					<p class="main-title"><span class="span-title">操作</span></p>
+					<p class="main-title"><span class="span-title">输入</span></p>
 					<el-form :model="form1" :size="formSize" :rules="rules" label-width="130px" label-position="left">
 						<el-row :gutter="15">
 
-							<el-col :span="24">
+<!-- 							<el-col :span="24">
 								<el-form-item label="房本照片">
 									<ImgList :arr="HouseCertificateImageUrls" :arrc="C_HouseCertificateImageUrls"></ImgList>
 								</el-form-item>
-							</el-col>
+							</el-col> -->
 
 							<el-col :span="12">
 								<el-form-item label="房屋建筑面积(㎡)" class="label-danger">
@@ -98,7 +98,7 @@
 				</div>
 				
 				<div class="sec">
-					<p class="main-title"><span class="span-title">表格</span></p>
+					<!-- <p class="main-title"><span class="span-title">表格</span></p> -->
 					<table class="show-table" cellpadding="0" cellspacing="0" border="1">
 						<tbody>
 							<tr>
@@ -110,10 +110,10 @@
 								</td>
 								
 							</tr>
-							<tr>
+<!-- 							<tr>
 								<td>编号</td>
 								<td colspan="4">{{OrderNo || '-'}}</td>
-							</tr>
+							</tr> -->
 							<tr>
 								<td>房屋坐落</td>
 								<td colspan="4">{{form1.Location || '-'}}</td>
@@ -170,21 +170,11 @@
 						</tbody>
 					</table>
 					<p class="tip">备注【评估信息仅供参考，最终估值以下户为准】</p>
-
-					<el-form :size="formSize" class="m-t-20" label-width="120px" label-position="left">
-						<el-row :gutter="15">
-							<el-col :span="24">
-								<el-form-item label="上传估值报告" class="label-danger">
-									<ImgUpload :arr="HouseValuationImageUrl" :arrc="C_HouseValuationImageUrl" :max="1"></ImgUpload>
-								</el-form-item>
-							</el-col>
-						</el-row>
-					</el-form>
 				</div>
 
-				<div class="sec">
+<!-- 				<div class="sec">
 					<el-button class="pull-left" type="primary" @click="sub">完成</el-button>
-				</div>
+				</div> -->
 
 			</el-main>
 		</el-container>
@@ -272,18 +262,9 @@ export default {
 		}
 	},
 	mounted () {
-		// console.log(this.$route.params.id)
-		this.init()
 	},
 	methods:{
 
-		gotoLook() {
-			// 调到预报单
-			const id = this.$route.params.id
-			console.log(id)
-			this.$router.push({ name: 'look', params: { id }})
-		},
-		
 		// 修改用途
 		changeUsage(e) {
 			const { Usage } = this.form1
@@ -303,15 +284,10 @@ export default {
 			}
 		},
 
-		// 首页
-		gotoIndex() {
-			this.$router.push({ name : 'index' })
-		},
-
 		// 估值
 		valuation () {
-			const id = this.$route.params.id
-			const hid = this.$route.params.hid
+			const id = null
+			const hid = null
 			const {
 				OwnerName,
 				Location,
@@ -345,6 +321,7 @@ export default {
 				Floor,
 				BuildingFinishYear,
 			}
+			debugger
 			this.loading = true
 			this.pp('HouseValuation', param, res => {
 				this.loading = false
@@ -385,66 +362,7 @@ export default {
 
 		},
 
-		// 初始化
-		init () {
-			const id = this.$route.params.id
-			const hid = this.$route.params.hid
-			const param = {
-				OrderId: id,
-				HouseId: hid,
-			}
-			this.pp('GetHouseValuationParams', param, res => {
-				if (res.ret) {
-					const { 
-						HouseCertificateImageUrls,
-						C_HouseCertificateImageUrls,
-						OrderNo,
-					} = res.data || {}
-					this.HouseCertificateImageUrls = HouseCertificateImageUrls
-					this.C_HouseCertificateImageUrls = C_HouseCertificateImageUrls
-					this.OrderNo = OrderNo
-				} else {
-					this.warn(res.msg)
-				}
-			})
-		},
-
-		// 确认
-		sub () {
-			const { id, hid, oprid } = this.$route.params
-			const HouseValuationImageUrl = this.HouseValuationImageUrl
-			const C_HouseValuationImageUrl = this.C_HouseValuationImageUrl
-
-			if (HouseValuationImageUrl.length && C_HouseValuationImageUrl.length) {
-			} else {
-				this.warn('请上传估值报告！')
-				return
-			}
-			if (UPLOAD_NUM) {
-				this.warn('还有图片正在上传！')
-				return
-			}
-
-			const param = {
-				OrderId: id,
-				HouseId: hid,
-				OperationRecordId: oprid,
-				HouseValuationImageUrl:HouseValuationImageUrl.join(),
-				C_HouseValuationImageUrl:C_HouseValuationImageUrl.join(),
-			}
-			this.pp('CompleteHouseValuation', param, res => {
-				if (res.ret) {
-					// 跳到操作页面
-					this.$router.push({ name : 'opList', params: { id, hid }})
-				} else {
-					this.warn(res.msg)
-				}
-			})
-		},
-
 	},
-
-
 }
 </script>
 

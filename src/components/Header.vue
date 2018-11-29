@@ -42,14 +42,14 @@ export default {
 		goBack () {
 			const { name } = this.$route
 			const { id, hid } = this.$route.params
-			if (name == 'opList' || name == 'look') { // 返回首页
-				this.$router.push({ name : 'index' })
-			} else if (name == 'firstDetail') {
-				this.$router.go(-1)
-			} else {
-				this.$router.push({ name : 'opList', params: { id, hid }})
-			}
-			// this.$router.go(-1)	
+			// if (name == 'opList' || name == 'look') { // 返回首页
+			// 	this.$router.push({ name : 'index' })
+			// } else if (name == 'firstDetail') {
+			// 	this.$router.go(-1)
+			// } else {
+			// 	this.$router.push({ name : 'opList', params: { id, hid }})
+			// }
+			this.$router.go(-1)
 		},
 
 		// 刷新

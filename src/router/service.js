@@ -35,41 +35,6 @@ const GETJSON = (urlKey, data, cb) => {
         
     }
     const postData = JSON.stringify(param)
-    // console.log("url:",url)
-    // axios.post(url, postData)
-    // .then(res => {
-    //     // 返回格式
-    //     // {
-    //     //     "d": {
-    //     //         "__type": "OutputNewOrder:#GMOA",
-    //     //         "msg": "token验证失败",
-    //     //         "ret": "fail",
-    //     //         "data": {
-    //     //             "__type": "OutputNewOrderData:#GMOA",
-    //     //             "HouseId": "",
-    //     //             "OrderId": ""
-    //     //         }
-    //     //     }
-    //     // }
-    //     const resData = {
-    //         ret : res.d.ret == 'ok',
-    //         msg : res.d.msg,
-    //         data : res.d.data,
-    //     }
-    //     if(cb && typeof cb == 'function') {
-    //         cb(resData)
-    //     }
-
-    // })
-    // .catch(error => {
-    //     if(cb && typeof cb == 'function') {
-    //         const data = {
-    //             ret: false,
-    //             msg: "请求失败"
-    //         }
-    //         cb(data)
-    //     }
-    // })
     $.each(param, function(idx,val){
         if (val === true) {
             param[idx] = "True"
@@ -85,19 +50,6 @@ const GETJSON = (urlKey, data, cb) => {
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify(param),
         success: function (res) {
-            // 返回格式
-            // {
-            //     "d": {
-            //         "__type": "OutputNewOrder:#GMOA",
-            //         "msg": "token验证失败",
-            //         "ret": "fail",
-            //         "data": {
-            //             "__type": "OutputNewOrderData:#GMOA",
-            //             "HouseId": "",
-            //             "OrderId": ""
-            //         }
-            //     }
-            // }
             const resData = {
                 ret : res.d.ret == 'ok',
                 msg : res.d.msg,
