@@ -2,7 +2,7 @@
 	<div class="print-deal">
 		<el-container class="c-outer">
 
-			<Header back="true" title="详情"></Header>
+			<Header title="详情"></Header>
 
 			<el-main class="c-main">
 				

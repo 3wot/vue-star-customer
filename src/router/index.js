@@ -4,7 +4,7 @@ import Login from '@/components/Login'
 import Index from '@/components/Index'
 import Valuation from '@/components/Valuation'
 import FirstCheck from '@/components/FirstCheck'
-
+import FirstDetail from '@/components/FirstDetail'
 
 Vue.use(Router)
 
@@ -35,6 +35,13 @@ export default new Router({
 			name: 'firstCheck',
 			component: FirstCheck
 		},
+		{
+			// 详情
+			path: '/firstDetail/:name/:id?',
+			name: 'firstDetail',
+			component: FirstDetail
+		},
+		
 		
 	]
 })
