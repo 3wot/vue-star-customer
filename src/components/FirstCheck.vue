@@ -340,7 +340,6 @@ methods:{
 		}
 		const param = {
 			OrderId: id,
-			OperationRecordId: oprid,
 			BorrowerIDNO,
 			BorrowerMobile,
 			BorrowerName,
