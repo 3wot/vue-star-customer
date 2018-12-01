@@ -21,7 +21,7 @@
 								</el-form-item>
 							</el-col>
 							<el-col :span="12">
-								<el-form-item label="客户电话">
+								<el-form-item label="客户电话" class="label-danger">
 									<el-input v-model="BorrowerMobile" placeholder="请输入客户电话"></el-input>
 								</el-form-item>
 							</el-col>
@@ -349,7 +349,7 @@ methods:{
 			CompanyName,
 			BorrowerMarriageStatus,
 		}
-		if (!BorrowerIDNO || !BorrowerName) {
+		if (!BorrowerIDNO || !BorrowerName || !BorrowerMobile) {
 			this.warn('请完成标红的项目！')
 			return
 		}

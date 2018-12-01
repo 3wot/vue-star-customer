@@ -9,7 +9,7 @@
 
 		</div>
 		<div class="login-form">
-			<p class="login-title">业务管理系统 1.0</p>
+			<p class="login-title">大数据查询系统 1.0</p>
 			<el-form :model="loginForm" :rules="rules" label-width="90px" label-position="left">
 				<el-form-item label="账号" prop="mobile">
 					<el-input v-model="loginForm.mobile" placeholder="请输入手机号"></el-input>
