@@ -5,6 +5,8 @@ import Index from '@/components/Index'
 import Valuation from '@/components/Valuation'
 import FirstCheck from '@/components/FirstCheck'
 import FirstDetail from '@/components/FirstDetail'
+import FirCheck from '@/components/FirCheck'
+import Change from '@/components/Change'
 
 Vue.use(Router)
 
@@ -30,6 +32,12 @@ export default new Router({
 			component: Valuation
 		},
 		{
+			// 估值
+			path: '/firCheck',
+			name: 'firCheck',
+			component: FirCheck
+		},
+		{
 			// 初审
 			path: '/firstCheck',
 			name: 'firstCheck',
@@ -40,6 +48,12 @@ export default new Router({
 			path: '/firstDetail/:name/:id?',
 			name: 'firstDetail',
 			component: FirstDetail
+		},
+		{
+			// 修改密码
+			path: '/change',
+			name: 'change',
+			component: Change
 		},
 		
 		

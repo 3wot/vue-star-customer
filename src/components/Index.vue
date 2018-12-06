@@ -12,7 +12,7 @@
 					<span class="pull-left op-item-icon">
 						<i class="el-icon-menu"></i>
 					</span>
-					<span>估值</span>
+					<span>房屋估值查询</span>
 					<span class="pull-right op-item-icon">
 						<i class="el-icon-arrow-right"></i>
 					</span>
@@ -21,7 +21,16 @@
 					<span class="pull-left op-item-icon">
 						<i class="el-icon-menu"></i>
 					</span>
-					<span>初审</span>
+					<span>自然人风险查询</span>
+					<span class="pull-right op-item-icon">
+						<i class="el-icon-arrow-right"></i>
+					</span>
+				</div>
+				<div class="op-item" @click="gotoFirCheck">
+					<span class="pull-left op-item-icon">
+						<i class="el-icon-menu"></i>
+					</span>
+					<span>企业风险查询</span>
 					<span class="pull-right op-item-icon">
 						<i class="el-icon-arrow-right"></i>
 					</span>
@@ -61,6 +70,9 @@ export default {
 		// 初审
 		gotoFirstCheck() {
 			this.$router.push({ name : 'firstCheck' })
+		},
+		gotoFirCheck() {
+			this.$router.push({ name : 'firCheck' })
 		},
 
 	},

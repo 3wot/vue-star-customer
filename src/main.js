@@ -15,6 +15,7 @@ Vue.use(ElementUI)
 window.USER_INFO = {
     uid : '',
     token: '',
+    Username: '',
     OperatorRoleId: '',
     OperatorRoleName: '',
 }

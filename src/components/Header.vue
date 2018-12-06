@@ -5,7 +5,20 @@
 		<span v-if="back" class="header-back" @click="goBack">返回</span>
 		<span>{{title}}</span>
 
-		<span class="logout pull-right" @click="logOut">退出</span>
+		<!-- <span class="logout pull-right" @click="logOut">退出</span> -->
+		<el-dropdown trigger="click" class="h-name">
+			<span class="el-dropdown-link">
+				{{Username}}<i class="el-icon-arrow-down el-icon--right"></i>
+			</span>
+			<el-dropdown-menu slot="dropdown">
+				<el-dropdown-item>
+					<span @click="gotoChange">修改密码</span>
+				</el-dropdown-item>
+				<el-dropdown-item>
+					<span @click="logOut">退出</span>
+				</el-dropdown-item>
+			</el-dropdown-menu>
+			</el-dropdown>
 		<span v-if="refresh" class="logout pull-right" style="margin-right:15px;" @click="refreshFn">刷新</span>
 	</el-header>
 		
@@ -25,11 +38,11 @@ export default {
 	props: ['title','back','refresh'],
 	data () {
 		return {
-			
+			Username: '',
 		}
 	},
 	mounted () {
-
+		this.Username = window.sessionStorage.getItem('Username')
 	},
 	methods:{
 
@@ -56,6 +69,10 @@ export default {
 		refreshFn() {
 			this.$emit('refresh')
 		},
+
+		gotoChange() {
+			this.$router.push({ name : 'change' })
+		},
 	
 
 	},
@@ -79,6 +96,10 @@ export default {
 }
 .logout:hover {
 	color: #cccccc;
+}
+.h-name {
+	float: right;
+	color: #ffffff;
 }
 
 </style>

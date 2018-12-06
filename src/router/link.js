@@ -63,6 +63,7 @@ const urls = {
 	'GetMaterialList': 'GetMaterialList',
 
 	'GetEnforcementInfoDetail': 'GetEnforcementInfoDetail',
+	'ChangePwd': 'ChangePwd',
 }
 
 // 外部方法

@@ -9,32 +9,22 @@
 
 		</div>
 		<div class="login-form">
-			<p class="login-title">大数据查询系统 1.0</p>
+			<p class="login-title">修改密码</p>
 			<el-form :model="loginForm" :rules="rules" label-width="90px" label-position="left">
 				<el-form-item label="账号" prop="mobile">
 					<el-input v-model="loginForm.mobile" placeholder="请输入手机号"></el-input>
 				</el-form-item>
-				<el-form-item label="密码" prop="pwd">
-					<el-input type="password" placeholder="请输入密码" v-model="loginForm.pwd"></el-input>
+				<el-form-item label="旧密码" prop="pwd">
+					<el-input type="password" placeholder="请输入旧密码" v-model="loginForm.pwd"></el-input>
 				</el-form-item>
 
-				<el-form-item label="记住密码">
-				    <el-switch
-					  	v-model="loginForm.remember"
-					  	active-color="#13ce66"
-					  	inactive-color="#aaaaaa">
-					</el-switch>
-					<!-- <span class="change-pwd">
-						<router-link :to="{ name: 'change' }">
-							<span class="link">修改密码</span>
-						</router-link>
-					</span> -->
-
-			  	</el-form-item>
+				<el-form-item label="新密码" prop="newPwd">
+					<el-input type="password" placeholder="请输入新密码" v-model="loginForm.newPwd"></el-input>
+				</el-form-item>
 
 			 	<el-form-item>
-				    <el-button type="primary" @click="handleLogin">登录</el-button>
-				    <!-- <el-button type="primary" @click="gotoChange">修改密码</el-button> -->
+				    <el-button type="primary" @click="handleLogin">修改</el-button>
+				    <el-button type="primary" @click="gotoLogin">返回登录</el-button>
 			  	</el-form-item>
 
 			</el-form>
@@ -58,6 +48,7 @@ export default {
 			loginForm : {
 				mobile: '',
 				pwd: '',
+				newPwd: '',
 				remember: false,	
 			},
 			
@@ -66,14 +57,17 @@ export default {
 				 	{ required: true, message: '请输入手机号', trigger: 'blur' },
 				],
 				pwd : [
-				 	{ required: true, message: '请输入密码', trigger: 'blur' }
+				 	{ required: true, message: '请输入旧密码', trigger: 'blur' }
+				],
+				newPwd : [
+				 	{ required: true, message: '请输入新密码', trigger: 'blur' }
 				],
 			},
 		}
 	},
 	mounted () {
-		// 获取记录的名字和密码
-		this.getName()
+		
+		
 	},
 	methods:{
 		
@@ -98,14 +92,14 @@ export default {
 			}
 		},
 
-		// 修改密码
-		gotoChange () {
-			this.$router.push({ name : 'change' })
+		// 返回登录
+		gotoLogin () {
+			this.$router.push({ name : 'login' })
 		},
 
 		// 登录
 		handleLogin () {
-			const { pwd, mobile, remember } = this.loginForm
+			const { pwd, mobile, newPwd } = this.loginForm
 			
 			if (mobile && pwd) {
 				const platform = "pc"
@@ -119,23 +113,27 @@ export default {
 						const { 
 							uid,
 							token,
-							OperatorRoleId,
-							OperatorRoleName,
-							Username,
 						} = res.data || {}
-
-						USER_INFO.uid = uid
-						USER_INFO.token = token
-						USER_INFO.OperatorRoleId = OperatorRoleId
-						USER_INFO.OperatorRoleName = OperatorRoleName
-						USER_INFO.Username = Username
-						
 						window.sessionStorage.setItem('uid',uid)
 						window.sessionStorage.setItem('token',token)
-						window.sessionStorage.setItem('OperatorRoleId',OperatorRoleId)
-						window.sessionStorage.setItem('Username',Username)
-						// 首页
-						this.$router.push({ name : 'index' })
+
+						const cparam = {
+							oldPassword: pwd,
+							newPassword: newPwd,
+						}
+						this.pp('ChangePwd', cparam, res => {
+							if (res.ret) {
+								this.$message({
+						          	message: '修改成功，请返回登录页面，重新登录',
+						          	type: 'warning',
+						        })
+							} else {
+								this.$message({
+						          	message: res.msg,
+						          	type: 'warning',
+						        })
+							}
+						})
 					} else {
 						this.$message({
 				          	message: res.msg,
@@ -143,10 +141,6 @@ export default {
 				        })
 					}
 				})
-				// 记住密码
-				if (remember) {
-					this.setName()
-				}
 			} else {
 				this.$message({
 		          	message: '请输入手机号和密码',
