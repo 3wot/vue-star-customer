@@ -2,32 +2,32 @@
 	<div class="first-check">
 		<el-container class="c-outer">
 
-			<Header back="true" title="自然人风险查询"></Header>
+			<Header back="true" :title="LL('person_check')[ZZ.KK]"></Header>
 
 			<el-main class="c-main">
 				<div class="sec">
-					<p class="main-title"><span class="span-title">输入</span></p>
+					<p class="main-title"><span class="span-title">{{LL('input')[ZZ.KK]}}</span></p>
 					<el-form :size="formSize" label-width="140px" label-position="left">
 						<el-row :gutter="15">
 
 							<el-col :span="15">
-								<el-form-item label="客户姓名" class="label-danger">
-									<el-input v-model="BorrowerName" placeholder="请输入客户姓名"></el-input>
+								<el-form-item :label="LL('c_name')[ZZ.KK]" class="label-danger">
+									<el-input v-model="BorrowerName" :placeholder="LL('c_name')[ZZ.KK]"></el-input>
 								</el-form-item>
 							</el-col>
 							<el-col :span="15">
-								<el-form-item label="客户证件号码" class="label-danger">
-									<el-input v-model="BorrowerIDNO" placeholder="请输入客户证件号码"></el-input>
+								<el-form-item :label="LL('c_id')[ZZ.KK]" class="label-danger">
+									<el-input v-model="BorrowerIDNO" :placeholder="LL('c_id')[ZZ.KK]"></el-input>
 								</el-form-item>
 							</el-col>
 							<el-col :span="15">
-								<el-form-item label="客户电话" class="label-danger">
-									<el-input v-model="BorrowerMobile" placeholder="请输入客户电话"></el-input>
+								<el-form-item :label="LL('c_tel')[ZZ.KK]" class="label-danger">
+									<el-input v-model="BorrowerMobile" :placeholder="LL('c_tel')[ZZ.KK]"></el-input>
 								</el-form-item>
 							</el-col>
 
 							<el-col :span="24">
-								<el-button class="pull-left" type="primary" @click="firstCheck">查询</el-button>
+								<el-button class="pull-left" type="primary" @click="firstCheck">{{LL('check')[ZZ.KK]}}</el-button>
 								<span v-if="loading" class="loading"><i class="el-icon-loading"></i></span>
 							</el-col>
 						</el-row>
@@ -44,65 +44,65 @@
 									<img class="header1" src="../../static/header1.png">
 								</td>
 								<td colspan="4">
-									<span>自然人风险查询结果</span>
+									<span>{{LL('p_c_result')[ZZ.KK]}}</span>
 								</td>
 							</tr>
 							<tr>
-								<td colspan="7" class="bg-e">自然人信息</td>
+								<td colspan="7" class="bg-e">{{LL('person_info')[ZZ.KK]}}</td>
 							</tr>
 							<tr>
-								<td colspan="1">客户姓名：</td>
+								<td colspan="1">{{LL('c_name')[ZZ.KK]}}：</td>
 								<td colspan="1">{{BorrowerName || '-'}}</td>
-								<td colspan="1">证件号码：</td>
+								<td colspan="1">{{LL('c_id')[ZZ.KK]}}：</td>
 								<td colspan="1">{{BorrowerIDNO || '-'}}</td>
-								<td colspan="1">联系电话：</td>
+								<td colspan="1">{{LL('c_tel')[ZZ.KK]}}：</td>
 								<td colspan="1">{{BorrowerMobile || '-'}}</td>
 							</tr>
 							<tr>
-								<td colspan="7" class="bg-e">风险信息</td>
+								<td colspan="7" class="bg-e">{{LL('risk_info')[ZZ.KK]}}</td>
 							</tr>
 							<tr>
-								<td>法院涉诉</td>
+								<td>{{LL('court_case')[ZZ.KK]}}</td>
 								<td colspan="5">{{LawsuitInfo||'-'}}</td>
 							</tr>
 							<tr>
-								<td>法院被执行人</td>
+								<td>{{LL('court_exec')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{EnforcementInfo||'-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>失信被执行人</td>
+								<td>{{LL('dis_exec')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{CreditInfo||'-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>网络借贷黑名单</td>
+								<td>{{LL('network')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{P2PBlacklistInfo||'-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>税务负面</td>
+								<td>{{LL('tax_no')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{TaxInfo||'-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>严重违法</td>
+								<td>{{LL('serious_no')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{CriminalInfo||'-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>信贷逾期</td>
+								<td>{{LL('over_date')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{LoanExpirationInfo||'-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>多头借贷</td>
+								<td>{{LL('muti_owe')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{MultipointLendingInfo||'-'}}
 								</td>
@@ -112,6 +112,7 @@
 					
 				</div>
 			</el-main>
+			<Footer></Footer>
 		</el-container>
 
 	</div>
@@ -119,16 +120,18 @@
 
 <script>
 import Header from './Header'
+import Footer from './Footer'
 import ImgUpload from './ImgUpload'
 import ImgList from './ImgList'
 
 export default {
 	components:{
-		Header, ImgUpload, ImgList
+		Header, ImgUpload, ImgList, Footer
 	},
 	name: 'FirstCheck',
 	data () {
 		return {
+			ZZ:{},
 			loading: false,
 			formSize : 'small',
 
@@ -150,6 +153,7 @@ export default {
 	}
 },
 mounted () {
+	this.ZZ = this.TT
 },
 methods:{
 
