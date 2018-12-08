@@ -89,7 +89,8 @@ html,body {
 .c-main {
 	position: absolute;
 	top: 60px;
-	height: calc(100% - 60px);
+	bottom: 60px;
+	height: calc(100% - 120px);
 	width: 100%;
 	min-width: 800px;
 	overflow: auto;

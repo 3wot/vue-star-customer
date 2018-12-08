@@ -22,9 +22,9 @@ window.USER_INFO = {
     OperatorRoleName: '',
 }
 window.UPLOAD_NUM = 0
-window.LAN_TEMP = 'z'
 
 Vue.prototype.pp = GETJSON
+Vue.prototype.TT = {'KK': 'z'}
 Vue.prototype.LL = LL
 Vue.prototype.warn = function(msg) {
 	this.$message({

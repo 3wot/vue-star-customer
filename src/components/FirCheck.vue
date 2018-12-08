@@ -3,7 +3,7 @@
 		<el-container class="c-outer">
 
 			<Header back="true" title="企业风险查询"></Header>
-
+			
 			<el-main class="c-main">
 				<div class="sec">
 					<p class="main-title"><span class="span-title">输入</span></p>
