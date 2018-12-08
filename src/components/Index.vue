@@ -6,13 +6,15 @@
 				<span>首页</span>
 				<span class="logout pull-right">退出</span>
 			</el-header> -->
-			<Header title="首页"></Header>
+			<Header :title="LL('index')[TT.KK]"></Header>
+			
+
 		  	<el-main class="c-main">
 				<div class="op-item" @click="gotoValuation">
 					<span class="pull-left op-item-icon">
 						<i class="el-icon-menu"></i>
 					</span>
-					<span>房屋估值查询</span>
+					<span>{{LL('h_valuate')[TT.KK]}}</span>
 					<span class="pull-right op-item-icon">
 						<i class="el-icon-arrow-right"></i>
 					</span>
@@ -21,7 +23,7 @@
 					<span class="pull-left op-item-icon">
 						<i class="el-icon-menu"></i>
 					</span>
-					<span>自然人风险查询</span>
+					<span>{{LL('person_check')[TT.KK]}}</span>
 					<span class="pull-right op-item-icon">
 						<i class="el-icon-arrow-right"></i>
 					</span>
@@ -30,12 +32,14 @@
 					<span class="pull-left op-item-icon">
 						<i class="el-icon-menu"></i>
 					</span>
-					<span>企业风险查询</span>
+					<span>{{LL('comp_check')[TT.KK]}}</span>
 					<span class="pull-right op-item-icon">
 						<i class="el-icon-arrow-right"></i>
 					</span>
 				</div>
 		  	</el-main>
+
+		  	<Footer></Footer>
 			
 		</el-container>
 		
@@ -47,10 +51,12 @@
 
 <script>
 import Header from './Header'
+import Footer from './Footer'
+
 export default {
 	components:{
 	// Button,Field
-		Header
+		Header, Footer,
 	},
 	name: 'Index',
 	data () {

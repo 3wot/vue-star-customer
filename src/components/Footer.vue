@@ -3,7 +3,7 @@
 
 	<el-footer class="c-footer">
 		<span class="lan" v-bind:class="{'select-lan': temp == 'z'}" @click="changeLan('z')">中文</span>
-		<span class="lan" v-bind:class="{'select-lan': temp == 'e'}" @click="changeLan('e')">English {{TT.KK}}</span>
+		<span class="lan" v-bind:class="{'select-lan': temp == 'e'}" @click="changeLan('e')">English</span>
 	</el-footer>
 		
 	
@@ -47,7 +47,7 @@ export default {
 	left: 0px;
 	right: 0px;
 	line-height: 60px;
-	text-align: cneter;
+	text-align: center;
 }
 .lan {
 	padding: 0px 15px;

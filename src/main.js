@@ -24,7 +24,7 @@ window.USER_INFO = {
 window.UPLOAD_NUM = 0
 
 Vue.prototype.pp = GETJSON
-Vue.prototype.TT = {'KK': 'z'}
+Vue.prototype.TT = { KK : 'z'}
 Vue.prototype.LL = LL
 Vue.prototype.warn = function(msg) {
 	this.$message({
