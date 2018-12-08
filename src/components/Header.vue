@@ -2,7 +2,7 @@
 	
 
 	<el-header class="c-header">
-		<span v-if="back" class="header-back" @click="goBack">返回</span>
+		<span v-if="back" class="header-back" @click="goBack">{{LL('back')[ZZ.KK]}}</span>
 		<span>{{title}}</span>
 
 		<!-- <span class="logout pull-right" @click="logOut">退出</span> -->
@@ -12,10 +12,10 @@
 			</span>
 			<el-dropdown-menu slot="dropdown">
 				<el-dropdown-item>
-					<span @click="gotoChange">修改密码</span>
+					<span @click="gotoChange">{{LL('change_pwd')[ZZ.KK]}}</span>
 				</el-dropdown-item>
 				<el-dropdown-item>
-					<span @click="logOut">退出</span>
+					<span @click="logOut">{{LL('logout')[ZZ.KK]}}</span>
 				</el-dropdown-item>
 			</el-dropdown-menu>
 			</el-dropdown>
@@ -39,10 +39,12 @@ export default {
 	data () {
 		return {
 			Username: '',
+			ZZ: {},
 		}
 	},
 	mounted () {
 		this.Username = window.sessionStorage.getItem('Username')
+		this.ZZ = this.TT
 	},
 	methods:{
 

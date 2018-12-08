@@ -6,7 +6,7 @@
 				<span>首页</span>
 				<span class="logout pull-right">退出</span>
 			</el-header> -->
-			<Header title="首页"></Header>
+			<Header :title="LL('index')[ZZ.KK]"></Header>
 			
 
 		  	<el-main class="c-main">
@@ -14,7 +14,7 @@
 					<span class="pull-left op-item-icon">
 						<i class="el-icon-menu"></i>
 					</span>
-					<span>房屋估值查询</span>
+					<span>{{LL('h_valuate')[ZZ.KK]}}</span>
 					<span class="pull-right op-item-icon">
 						<i class="el-icon-arrow-right"></i>
 					</span>
@@ -23,7 +23,7 @@
 					<span class="pull-left op-item-icon">
 						<i class="el-icon-menu"></i>
 					</span>
-					<span>自然人风险查询</span>
+					<span>{{LL('person_check')[ZZ.KK]}}</span>
 					<span class="pull-right op-item-icon">
 						<i class="el-icon-arrow-right"></i>
 					</span>
@@ -32,14 +32,14 @@
 					<span class="pull-left op-item-icon">
 						<i class="el-icon-menu"></i>
 					</span>
-					<span>企业风险查询</span>
+					<span>{{LL('comp_check')[ZZ.KK]}}</span>
 					<span class="pull-right op-item-icon">
 						<i class="el-icon-arrow-right"></i>
 					</span>
 				</div>
 		  	</el-main>
 
-		  	<!-- <Footer></Footer> -->
+		  	<Footer></Footer>
 			
 		</el-container>
 		
@@ -61,11 +61,11 @@ export default {
 	name: 'Index',
 	data () {
 		return {
-			
+			ZZ: {},
 		}
 	},
 	mounted () {
-		
+		this.ZZ = this.TT
 	},
 	methods:{
 		

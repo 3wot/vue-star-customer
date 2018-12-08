@@ -9,16 +9,16 @@
 
 		</div>
 		<div class="login-form">
-			<p class="login-title">大数据查询系统 1.0</p>
-			<el-form :model="loginForm" :rules="rules" label-width="90px" label-position="left">
-				<el-form-item label="账号" prop="mobile">
-					<el-input v-model="loginForm.mobile" placeholder="请输入手机号"></el-input>
+			<p class="login-title">{{LL('sys_name')[ZZ.KK]}} 1.0</p>
+			<el-form :model="loginForm" label-width="90px" label-position="left">
+				<el-form-item :label="LL('sys_acc')[ZZ.KK]" prop="mobile">
+					<el-input v-model="loginForm.mobile" :placeholder="LL('sys_acc_plho')[ZZ.KK]"></el-input>
 				</el-form-item>
-				<el-form-item label="密码" prop="pwd">
-					<el-input type="password" placeholder="请输入密码" v-model="loginForm.pwd"></el-input>
+				<el-form-item :label="LL('sys_pwd')[ZZ.KK]" prop="pwd">
+					<el-input type="password" :placeholder="LL('sys_pwd_plho')[ZZ.KK]" v-model="loginForm.pwd"></el-input>
 				</el-form-item>
 
-				<el-form-item label="记住密码">
+				<el-form-item :label="LL('remember')[ZZ.KK]">
 				    <el-switch
 					  	v-model="loginForm.remember"
 					  	active-color="#13ce66"
@@ -33,7 +33,7 @@
 			  	</el-form-item>
 
 			 	<el-form-item>
-				    <el-button type="primary" @click="handleLogin">登录</el-button>
+				    <el-button type="primary" @click="handleLogin">{{LL('login')[ZZ.KK]}}</el-button>
 				    <!-- <el-button type="primary" @click="gotoChange">修改密码</el-button> -->
 			  	</el-form-item>
 
@@ -41,15 +41,16 @@
 
 		</div>
 		
-
+		<Footer></Footer>
 	</div>
 </template>
 
 <script>
+import Footer from './Footer'
 
 export default {
 	components:{
-
+		Footer,
 	},
 	name: 'Login',
 	data () {
@@ -59,20 +60,14 @@ export default {
 				pwd: '',
 				remember: false,	
 			},
-			
-			rules : {
-				mobile : [
-				 	{ required: true, message: '请输入手机号', trigger: 'blur' },
-				],
-				pwd : [
-				 	{ required: true, message: '请输入密码', trigger: 'blur' }
-				],
-			},
+
+			ZZ: {}
 		}
 	},
 	mounted () {
 		// 获取记录的名字和密码
 		this.getName()
+		this.ZZ = this.TT
 	},
 	methods:{
 		

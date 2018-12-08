@@ -155,6 +155,7 @@
 				</div>
 
 			</el-main>
+			<Footer></Footer>
 		</el-container>
 
 	</div>
@@ -162,12 +163,13 @@
 
 <script>
 import Header from './Header'
+import Footer from './Footer'
 import ImgUpload from './ImgUpload'
 import ImgList from './ImgList'
 
 export default {
 	components:{
-		Header, ImgUpload, ImgList
+		Header, ImgUpload, ImgList, Footer,
 	},
 	name: 'Valuation',
 	computed:{
