@@ -1,66 +1,71 @@
 <template>
-	<div class="login">
+	<div class="change">
+		<el-container class="c-outer">
 
-		<img class="bg" src="../../static/login.jpg">
+			<Header title="修改密码"></Header>
 
+			<el-main class="c-main">
+				
+				<div class="sec">
+					<el-form class="m-t-20" label-width="200px" label-position="left">
+						<el-row :gutter="15">
+							<el-col :span="20">
+								<el-form-item label="请输入旧密码" class="label-danger">
+									<el-input type="number" v-model="loginForm.pwd" placeholder="请输入旧密码"></el-input>
+								</el-form-item>
+							</el-col>
+							<el-col :span="20">
+								<el-form-item label="请输入新密码" class="label-danger">
+									<el-input type="text" v-model="loginForm.newPwd" placeholder="请输入新密码"></el-input>
+								</el-form-item>
+							</el-col>
+							<el-col :span="20">
+								<el-form-item label="请再次输入新密码" class="label-danger">
+									<el-input type="text" v-model="loginForm.newPwd1" placeholder="请再次输入新密码"></el-input>
+								</el-form-item>
+							</el-col>
 
-		<div class="login-logo">
-			<img src="../../static/hlogo.png">
+							<el-col :span="20">
+								<el-form-item label="" class="text-left">
+									<el-button type="primary" @click="handleLogin">确定</el-button>
+				    				<el-button type="primary" @click="gotoLogin">返回登录</el-button>
+								</el-form-item>
+							</el-col>
 
-		</div>
-		<div class="login-form">
-			<p class="login-title">修改密码</p>
-			<el-form :model="loginForm" :rules="rules" label-width="90px" label-position="left">
-				<el-form-item label="账号" prop="mobile">
-					<el-input v-model="loginForm.mobile" placeholder="请输入手机号"></el-input>
-				</el-form-item>
-				<el-form-item label="旧密码" prop="pwd">
-					<el-input type="password" placeholder="请输入旧密码" v-model="loginForm.pwd"></el-input>
-				</el-form-item>
-
-				<el-form-item label="新密码" prop="newPwd">
-					<el-input type="password" placeholder="请输入新密码" v-model="loginForm.newPwd"></el-input>
-				</el-form-item>
-
-			 	<el-form-item>
-				    <el-button type="primary" @click="handleLogin">修改</el-button>
-				    <el-button type="primary" @click="gotoLogin">返回登录</el-button>
-			  	</el-form-item>
-
-			</el-form>
-
-		</div>
-		
+						</el-row>
+					</el-form>
+				</div>
+			</el-main>
+		</el-container>
 
 	</div>
 </template>
 
 <script>
-
-
+import Header from './Header'
+import L from '@/router/lan.js'
 export default {
 	components:{
-
+		Header,
 	},
-	name: 'Login',
+	name: 'Change',
 	data () {
 		return {
 			loginForm : {
-				mobile: '',
 				pwd: '',
 				newPwd: '',
-				remember: false,	
+				newPwd1: '',	
 			},
 			
 			rules : {
-				mobile : [
-				 	{ required: true, message: '请输入手机号', trigger: 'blur' },
-				],
 				pwd : [
 				 	{ required: true, message: '请输入旧密码', trigger: 'blur' }
 				],
 				newPwd : [
 				 	{ required: true, message: '请输入新密码', trigger: 'blur' }
+				],
+				newPwd : [
+				 	{ required: true, message: '请再次输入新密码', trigger: 'blur' }
 				],
 			},
 		}
@@ -71,27 +76,6 @@ export default {
 	},
 	methods:{
 		
-		// 记录名字和密码
-		setName () {
-			// console.log('记录名字')
-			const data = {
-				mobile: this.loginForm.mobile,
-				pwd: this.loginForm.pwd
-			}
-			this.JCACHE.set('name', data)
-		},
-
-		// 获取名字和密码
-		getName () {
-			const data = this.JCACHE.get('name')
-			// console.log('获取名字和密码',data)
-			if (data) {
-				const { mobile, pwd } = data
-				this.loginForm.mobile = mobile
-				this.loginForm.pwd = pwd	
-			}
-		},
-
 		// 返回登录
 		gotoLogin () {
 			this.$router.push({ name : 'login' })
@@ -99,53 +83,27 @@ export default {
 
 		// 登录
 		handleLogin () {
-			const { pwd, mobile, newPwd } = this.loginForm
-			
-			if (mobile && pwd) {
-				const platform = "pc"
-				const param = {
-					mobile,
-					pwd,
-					platform,
-				}
-				this.pp('Login', param, res => {
-					if (res.ret) {
-						const { 
-							uid,
-							token,
-						} = res.data || {}
-						window.sessionStorage.setItem('uid',uid)
-						window.sessionStorage.setItem('token',token)
+			const { pwd, newPwd1, newPwd } = this.loginForm
 
-						const cparam = {
-							oldPassword: pwd,
-							newPassword: newPwd,
-						}
-						this.pp('ChangePwd', cparam, res => {
-							if (res.ret) {
-								this.$message({
-						          	message: '修改成功，请返回登录页面，重新登录',
-						          	type: 'warning',
-						        })
-							} else {
-								this.$message({
-						          	message: res.msg,
-						          	type: 'warning',
-						        })
-							}
-						})
-					} else {
-						this.$message({
-				          	message: res.msg,
-				          	type: 'warning',
-				        })
+			if (pwd && newPwd && newPwd1) {
+				if (newPwd == newPwd1) {
+					const param = {
+						oldPassword: pwd,
+						newPassword: newPwd,
 					}
-				})
+					this.pp('ChangePwd', param, res => {
+						if (res.ret) {
+					        this.warn('修改成功，请返回登录页面，重新登录')
+						} else {
+							this.warn(res.msg)
+						}
+					})	
+				} else {
+					this.warn('两次输入的新密码不一致，请您重新输入')	
+				}
+					
 			} else {
-				this.$message({
-		          	message: '请输入手机号和密码',
-		          	type: 'warning',
-		        })
+				this.warn('请输入标红项！')
 			}
 		},
 
@@ -158,7 +116,8 @@ export default {
 </script>
 
 <style scoped>
-.login {
+
+.change {
 	position: absolute;
 	top: 0px;
 	left: 0px;
@@ -166,49 +125,8 @@ export default {
 	bottom: 0px;
 	overflow: hidden;
 	vertical-align: middle;
+}
+.text-left {
 	text-align: left;
 }
-
-.login img.bg {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	height: 100%;
-	width: 100%;
-	z-index: -1;
-}
-.login-form {
-	width: 350px;
-	margin: 0 auto;
-	margin-top: 200px;
-	background-color: #ffffff;
-	border-radius: 10px;
-	padding: 30px;
-	z-index: 99;
-}
-.login-logo {
-	position: absolute;
-	text-align: center;
-	top: 120px;
-	left: 0px;
-	right: 0px;
-}
-.login-logo img {
-	width: 180px;
-	margon: 0 auto;
-}
-.login-title {
-    margin-top: -10px;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-}
-.change-pwd {
-	float: right;
-}
-.change-pwd a{
-	text-decoration: none;
-	color: #409eff;
-}
-
 </style>

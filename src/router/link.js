@@ -1,7 +1,7 @@
 
 // 域名
-// const HOST = 'http://www.windant.com:9005/Service1.svc/'
-const HOST = '/Service1.svc/'
+const HOST = 'http://www.windant.com:9005/Service1.svc/'
+// const HOST = '/Service1.svc/'
 
 // 相对地址
 const urls = {
@@ -64,6 +64,8 @@ const urls = {
 
 	'GetEnforcementInfoDetail': 'GetEnforcementInfoDetail',
 	'ChangePwd': 'ChangePwd',
+	'GetPersonInfo': 'GetPersonInfo',
+	'GetCompanyInfo': 'GetCompanyInfo',
 }
 
 // 外部方法

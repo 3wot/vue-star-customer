@@ -11,11 +11,11 @@
 					<el-form :model="form1" :size="formSize" :rules="rules" label-width="130px" label-position="left">
 						<el-row :gutter="15">
 
-<!-- 							<el-col :span="24">
-								<el-form-item label="房本照片">
-									<ImgList :arr="HouseCertificateImageUrls" :arrc="C_HouseCertificateImageUrls"></ImgList>
+							<el-col :span="12">
+								<el-form-item label="房屋坐落" class="label-danger">
+									<el-input v-model="form1.Location" placeholder="请输入房屋坐落"></el-input>
 								</el-form-item>
-							</el-col> -->
+							</el-col>
 
 							<el-col :span="12">
 								<el-form-item label="房屋建筑面积(㎡)" class="label-danger">
@@ -23,11 +23,7 @@
 								</el-form-item>
 							</el-col>
 
-							<el-col :span="12">
-								<el-form-item label="房屋坐落" class="label-danger">
-									<el-input v-model="form1.Location" placeholder="请输入房屋坐落"></el-input>
-								</el-form-item>
-							</el-col>
+							
 
 							
 
@@ -49,11 +45,9 @@
 							</el-col>
 
 							<el-col :span="12">
-								<el-form-item label="抵押成数" class="label-danger">
-									<el-select class="w-100" v-model="form1.PledgePercentage" placeholder="请选择抵押成数">
-										<el-option v-for="(item,index) in op3" :key="index" :label="item" :value="item"></el-option>
-
-									</el-select>
+								<el-form-item label="建成年代">
+									<el-date-picker v-model="form1.BuildingFinishYear" value-format="yyyy" class="w-100" type="year" placeholder="请选择建成年代"></el-date-picker>
+									<!-- <el-input v-model="form1.BuildingFinishYear" placeholder="请输入房龄"></el-input> -->
 								</el-form-item>
 							</el-col>
 
@@ -78,12 +72,7 @@
 								</el-form-item>
 							</el-col>
 
-							<el-col :span="12">
-								<el-form-item label="建成年代">
-									<el-date-picker v-model="form1.BuildingFinishYear" value-format="yyyy" class="w-100" type="year" placeholder="请选择建成年代"></el-date-picker>
-									<!-- <el-input v-model="form1.BuildingFinishYear" placeholder="请输入房龄"></el-input> -->
-								</el-form-item>
-							</el-col>
+							
 
 							<el-col :span="24">
 
@@ -142,12 +131,6 @@
 								<td colspan="2">{{HouseTotalPrice|| '-'}}</td>
 							</tr>
 							<tr>
-								<td>抵押成数</td>
-								<td>{{form1.PledgePercentage|| '-'}}</td>
-								<td>抵押总价(万)</td>
-								<td colspan="2">{{HousePledgePrice|| '-'}}</td>
-							</tr>
-							<tr>
 								<td>行政区均价(元/平米)</td>
 								<td>{{HouseAveragePrice|| '-'}}</td>
 								<td>成交周期(日)</td>
@@ -169,12 +152,7 @@
 							
 						</tbody>
 					</table>
-					<p class="tip">备注【评估信息仅供参考，最终估值以下户为准】</p>
 				</div>
-
-<!-- 				<div class="sec">
-					<el-button class="pull-left" type="primary" @click="sub">完成</el-button>
-				</div> -->
 
 			</el-main>
 		</el-container>
@@ -301,7 +279,7 @@ export default {
 				BuildingFinishYear,
 			} = this.form1
 
-			if (Location && Area && Usage && PledgePercentage) {
+			if (Location && Area && Usage) {
 
 			} else {
 				this.warn('请完成标红的项目！')

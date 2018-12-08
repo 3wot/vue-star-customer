@@ -47,7 +47,6 @@
 
 <script>
 
-
 export default {
 	components:{
 

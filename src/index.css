@@ -151,7 +151,8 @@ html,body {
 .show-table {
 	border: 1px solid #ddd;
     border-collapse: collapse;
-    width: 800px;
+    min-width: 800px;
+    width: 100%;
     line-height: 1.4;
 }
 .show-table-sm {
@@ -235,4 +236,7 @@ html,body {
     font-size: 32px;
     float: left;
     padding: 0 20px;
+}
+.bg-e {
+	background-color: #eeeeee; 
 }
