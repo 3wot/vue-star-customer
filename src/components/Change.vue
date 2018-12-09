@@ -2,7 +2,7 @@
 	<div class="change">
 		<el-container class="c-outer">
 
-			<Header :title="LL('change_pwd')[ZZ.KK]"></Header>
+			<Header back="true" :title="LL('change_pwd')[ZZ.KK]"></Header>
 
 			<el-main class="c-main">
 				
