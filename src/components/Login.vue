@@ -10,7 +10,7 @@
 		</div>
 		<div class="login-form">
 			<p class="login-title">{{LL('sys_name')[ZZ.KK]}} 1.0</p>
-			<el-form :model="loginForm" label-width="90px" label-position="left">
+			<el-form :model="loginForm" label-width="150px" label-position="left">
 				<el-form-item :label="LL('sys_acc')[ZZ.KK]" prop="mobile">
 					<el-input v-model="loginForm.mobile" :placeholder="LL('sys_acc_plho')[ZZ.KK]"></el-input>
 				</el-form-item>
@@ -131,10 +131,7 @@ export default {
 						// 首页
 						this.$router.push({ name : 'index' })
 					} else {
-						this.$message({
-				          	message: res.msg,
-				          	type: 'warning',
-				        })
+				        this.warn(res.msg)
 					}
 				})
 				// 记住密码
@@ -142,10 +139,7 @@ export default {
 					this.setName()
 				}
 			} else {
-				this.$message({
-		          	message: '请输入手机号和密码',
-		          	type: 'warning',
-		        })
+		        this.warn('请输入手机号和密码','Please complete phone number and password.')
 			}
 		},
 
@@ -178,7 +172,7 @@ export default {
 	z-index: -1;
 }
 .login-form {
-	width: 350px;
+	width: 500px;
 	margin: 0 auto;
 	margin-top: 200px;
 	background-color: #ffffff;

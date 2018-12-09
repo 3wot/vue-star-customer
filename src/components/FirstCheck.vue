@@ -7,7 +7,7 @@
 			<el-main class="c-main">
 				<div class="sec">
 					<p class="main-title"><span class="span-title">{{LL('input')[ZZ.KK]}}</span></p>
-					<el-form :size="formSize" label-width="140px" label-position="left">
+					<el-form :size="formSize" label-width="170px" label-position="left">
 						<el-row :gutter="15">
 
 							<el-col :span="15">
@@ -170,7 +170,7 @@ methods:{
   			"PersonMobile": BorrowerMobile,
 		}
 		if (!BorrowerIDNO || !BorrowerName || !BorrowerMobile) {
-			this.warn('请完成标红的项目！')
+			this.warn('请完成标红的项目！','Please complete the red input box!')
 			return
 		}
 		this.loading = true

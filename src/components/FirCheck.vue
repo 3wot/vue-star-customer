@@ -2,20 +2,20 @@
 	<div class="first-check">
 		<el-container class="c-outer">
 
-			<Header back="true" title="企业风险查询"></Header>
+			<Header back="true" :title="LL('comp_check')[ZZ.KK]"></Header>
 			
 			<el-main class="c-main">
 				<div class="sec">
-					<p class="main-title"><span class="span-title">输入</span></p>
-					<el-form :size="formSize" label-width="140px" label-position="left">
+					<p class="main-title"><span class="span-title">{{LL('input')[ZZ.KK]}}</span></p>
+					<el-form :size="formSize" label-width="170px" label-position="left">
 						<el-row :gutter="15">
 							<el-col :span="15">
-								<el-form-item label="企业名称" class="label-danger">
-									<el-input v-model="CompanyName" placeholder="请输入企业名称"></el-input>
+								<el-form-item :label="LL('comp_name')[ZZ.KK]" class="label-danger">
+									<el-input v-model="CompanyName" :placeholder="LL('comp_name')[ZZ.KK]"></el-input>
 								</el-form-item>
 							</el-col>
 							<el-col :span="24">
-								<el-button class="pull-left" type="primary" @click="firstCheck">查询</el-button>
+								<el-button class="pull-left" type="primary" @click="firstCheck">{{LL('check')[ZZ.KK]}}</el-button>
 								<span v-if="loading" class="loading"><i class="el-icon-loading"></i></span>
 							</el-col>
 						</el-row>
@@ -31,118 +31,118 @@
 									<img class="header1" src="../../static/header1.png">
 								</td>
 								<td colspan="4">
-									<span>企业风险查询结果</span>
+									<span>{{LL('comp_risk_r')[ZZ.KK]}}</span>
 								</td>
 							</tr>
 							<tr>
-								<td colspan="7" class="bg-e">企业信息</td>
+								<td colspan="6" class="bg-e">{{LL('comp_info')[ZZ.KK]}}</td>
 							</tr>
 							<tr>
-								<td colspan="1">企业名称：</td>
+								<td colspan="1">{{LL('comp_name')[ZZ.KK]}}：</td>
 								<td colspan="2">{{CompanyName || '-'}}</td>
-								<td colspan="1">统一社会信用代码：</td>
+								<td colspan="1">{{LL('comp_id')[ZZ.KK]}}：</td>
 								<td colspan="2">{{CorpCreditCode|| '-'}}</td>
 							</tr>
 							<tr>
-								<td colspan="1">法定代表人：</td>
+								<td colspan="1">{{LL('comp_person')[ZZ.KK]}}：</td>
 								<td colspan="2">{{CompanyLegalPerson || '-'}}</td>
-								<td colspan="1">注册资本：</td>
+								<td colspan="1">{{LL('comp_mon')[ZZ.KK]}}：</td>
 								<td colspan="2">{{RegisterCapital || '-'}}</td>
 							</tr>
 							<tr>
-								<td colspan="1">营业期限自：</td>
+								<td colspan="1">{{LL('comp_from')[ZZ.KK]}}：</td>
 								<td colspan="2">{{time(BusinessStartDate) || '-'}}</td>
-								<td colspan="1">营业期限至：</td>
+								<td colspan="1">{{LL('comp_to')[ZZ.KK]}}：</td>
 								<td colspan="2">{{time(BusinessEndDate) || '-'}}</td>
 							</tr>
 							<tr>
-								<td colspan="1">登记状态：</td>
+								<td colspan="1">{{LL('comp_status')[ZZ.KK]}}：</td>
 								<td colspan="2">{{Status || '-'}}</td>
-								<td colspan="1">住所：</td>
+								<td colspan="1">{{LL('comp_l')[ZZ.KK]}}：</td>
 								<td colspan="2">{{Address || '-'}}</td>
 							</tr>
 							<tr>
-								<td colspan="1">经营范围：</td>
+								<td colspan="1">{{LL('comp_range')[ZZ.KK]}}：</td>
 								<td colspan="5">{{BusinessScope || '-'}}</td>
 							</tr>
 							<tr>
-								<td colspan="7" class="bg-e">风险信息</td>
+								<td colspan="6" class="bg-e">{{LL('risk_info')[ZZ.KK]}}</td>
 							</tr>
 							<tr>
-								<td>经营异常</td>
+								<td>{{LL('comp_bad')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ BusinessInfo || '-'}}
 								</td>
 
 							</tr>
 							<tr>
-								<td>行政处罚</td>
+								<td>{{LL('comp_punish')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ AdministrativePenaltyInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>股权出质</td>
+								<td>{{LL('comp_seal')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ SharePledgeInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>动产抵押</td>
+								<td>{{LL('comp_diya')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ MovablesPledgeInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>欠税公告</td>
+								<td>{{LL('comp_qian')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ TaxOwingInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>司法拍卖</td>
+								<td>{{LL('comp_sifa')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ JudicialSaleInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>法律诉讼</td>
+								<td>{{LL('comp_court')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ LawsuitInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>法院公告</td>
+								<td>{{LL('comp_court_p')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ CourtAnnouncementInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>开庭公告</td>
+								<td>{{LL('court_notice')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ TrialInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>失信被执行人</td>
+								<td>{{LL('dis_exec')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ CreditEnforcementInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>法院被执行人</td>
+								<td>{{LL('court_exec')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ CourtEnforcementInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>严重违法</td>
+								<td>{{LL('serious_no')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ CriminalInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
-								<td>企业风险</td>
+								<td>{{LL('comp_risk')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ RiskInfo || '-'}}
 								</td>
@@ -158,6 +158,7 @@
 					
 				</div>
 			</el-main>
+			<Footer></Footer>
 		</el-container>
 
 	</div>
@@ -165,16 +166,18 @@
 
 <script>
 import Header from './Header'
+import Footer from './Footer'
 import ImgUpload from './ImgUpload'
 import ImgList from './ImgList'
 
 export default {
 	components:{
-		Header, ImgUpload, ImgList
+		Header, ImgUpload, ImgList, Footer
 	},
 	name: 'FirstCheck',
 	data () {
 		return {
+			ZZ:{},
 			loading: false,
 			formSize : 'small',
 			
@@ -204,6 +207,7 @@ export default {
 	}
 },
 mounted () {
+	this.ZZ = this.TT
 },
 methods:{
 
@@ -216,7 +220,7 @@ methods:{
 		  	CompanyName,
 		}
 		if (!CompanyName) {
-			this.warn('请输入企业名称！')
+			this.warn('请输入企业名称！','Please input company name')
 			return
 		}
 		this.loading = true

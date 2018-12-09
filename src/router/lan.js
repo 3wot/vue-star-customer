@@ -1,280 +1,299 @@
 const urls = {
 	sys_name: {
 		z: '大数据查询系统',
-		e: 'sys_name',
+		e: 'GM Query System',
 	},
 	sys_acc: {
 		z: '账号',
-		e: 'sys_acc',
+		e: 'Account Number',
 	},
 	sys_pwd: {
 		z: '密码',
-		e: 'sys_pwd',
+		e: 'Password',
 	},
 	remember: {
 		z: '记住密码',
-		e: 'remember',
+		e: 'Remember Password',
 	},
 	login: {
 		z: '登录',
-		e: 'login',
+		e: 'Login',
 	},
 	index: {
 		z: '首页',
-		e: 'index',
+		e: 'Home Page',
 	},
 	h_valuate: {
 		z: '房屋估值查询',
-		e: 'h_valuate',
+		e: 'House Valuation Query',
 	},
 	person_check: {
 		z: '自然人风险查询',
-		e: 'person_check',
+		e: 'Natural Person Risk Query',
 	},
 	comp_check: {
 		z: '企业风险查询',
-		e: 'comp_check',
+		e: 'Company Risk Query',
 	},
 	check_log: {
 		z: '查询记录',
-		e: 'check_log',
+		e: 'Query Records',
 	},
 	change_pwd: {
 		z: '修改密码',
-		e: 'change_pwd',
+		e: 'Change Passpord',
 	},
 	logout: {
 		z: '退出',
-		e: 'logout',
+		e: 'Log Out',
 	},
 	back: {
 		z: '返回',
-		e: 'back',
+		e: 'Return',
 	},
 	input: {
 		z: '输入',
-		e: 'input',
+		e: 'Input',
 	},
 	h_location: {
 		z: '房屋坐落',
-		e: 'h_location',
+		e: 'House Location',
 	},
 	h_area: {
 		z: '房屋建筑面积(㎡)',
-		e: 'h_area',
+		e: 'House Construction Area(㎡)',
 	},
 	h_attr: {
 		z: '房屋性质',
-		e: 'h_attr',
+		e: 'Property of House',
 	},
 	h_use: {
 		z: '用途',
-		e: 'h_use',
+		e: 'Housing Purpose',
 	},
 	h_build: {
 		z: '建成年代',
-		e: 'h_build',
+		e: 'Date of Construction',
 	},
 	h_sou: {
 		z: '房屋朝向',
-		e: 'h_sou',
+		e: 'Orientation of House',
 	},
 	total_floor: {
 		z: '总楼层数',
-		e: 'total_floor',
+		e: 'Total Floor',
 	},
 	h_floor: {
 		z: '所在楼层',
-		e: 'h_floor',
+		e: 'House Floor',
 	},
 	h_valuate_r: {
 		z: '房屋估值情况表',
-		e: 'h_valuate_r',
+		e: 'House Valuation Report',
 	},
 	build_year: {
 		z: '房龄',
-		e: 'build_year',
+		e: 'House Building Year',
 	},
 	h_s_price: {
 		z: '房屋单价(元/平米)',
-		e: 'h_s_price',
+		e: 'House Unit Price(CNY/square meters)',
 	},
 	h_t_price: {
 		z: '房屋总价(万)',
-		e: 'h_t_price',
+		e: 'House Total Price(Thousands)',
 	},
 	normal_price: {
 		z: '行政区均价(元/平米)',
-		e: 'normal_price',
+		e: 'Administrative Area Average Price(CNY/square meters)',
 	},
 	deal_cycle: {
 		z: '成交周期(日)',
-		e: 'deal_cycle',
+		e: 'Transaction Cycle(Daily)',
 	},
 	near_price: {
 		z: '周边小区价格',
-		e: 'near_price',
+		e: 'Surrounding Communities Price',
 	},
 	valuation: {
 		z: '估值',
-		e: 'valuation',
+		e: 'Valuation',
 	},
 	p_c_result: {
 		z: '自然人风险查询结果',
-		e: 'p_c_result',
+		e: 'Natural Person Risk Query Result',
 	},
 	check: {
 		z: '查询',
-		e: 'check',
+		e: 'Query',
 	},
 	c_name: {
 		z: '客户姓名',
-		e: 'c_name',
+		e: 'Client Name',
 	},
 	c_id: {
 		z: '客户证件号码',
-		e: 'c_id',
+		e: 'Client ID Number',
 	},
 	c_tel: {
 		z: '客户电话',
-		e: 'c_tel',
+		e: 'Client Mobile Number',
 	},
 	court_case : {
 		z: '法院涉诉',
-		e: 'court_case',
+		e: 'Court Case',
 	},
 	court_exec: {
 		z: '法院被执行人',
-		e: 'court_exec',
+		e: 'Court Executor',
 	},
 	dis_exec: {
 		z: '失信被执行人',
-		e: 'dis_exec',
+		e: 'Dishonest Executor',
 	},
 	network: {
 		z: '网络借贷黑名单',
-		e: 'network',
+		e: 'Blacklist of Internet Lending',
 	},
 	tax_no: {
 		z: '税务负面',
-		e: 'tax_no',
+		e: 'Tax Negative',
 	},
 	serious_no: {
 		z: '严重违法',
-		e: 'serious_no',
+		e: 'Setious Violation of Law',
 	},
 	over_date: {
 		z: '信贷逾期',
-		e: 'over_date',
+		e: 'Overdue Credit',
 	},
 	muti_owe: {
 		z: '多头借贷',
-		e: 'muti_owe',
+		e: 'Borrowing from Multiple Sources',
 	},
 	risk_info: {
 		z: '风险信息',
-		e: 'risk_info',
+		e: 'Risk Information',
 	},
 	person_info: {
 		z: '自然人信息',
-		e: 'person_info',
+		e: 'Natural Person Information',
 	},
 	comp_info: {
 		z: '企业信息',
-		e: 'comp_info',
+		e: 'Company Information',
 	},
-
 	comp_name: {
 		z: '企业名称',
-		e: 'comp_name',
+		e: 'Company Name',
 	},
 	comp_risk_r: {
 		z: '企业风险查询结果',
-		e: 'comp_risk_r',
+		e: 'Company Risk Query Result',
 	},
 	comp_id: {
 		z: '统一社会信用代码',
-		e: 'comp_id',
+		e: 'Company Unified Social Credit Code',
 	},
 	comp_person: {
 		z: '法定代表人',
-		e: 'comp_person',
+		e: 'Legal Representative',
 	},
 	comp_mon: {
 		z: '注册资本',
-		e: 'comp_mon',
+		e: 'Registered Capital',
 	},
 	comp_from: {
 		z: '营业期限自',
-		e: 'comp_from',
+		e: ' Business Term From ',
 	},
 	comp_to: {
 		z: '营业期限至',
-		e: 'comp_to',
+		e: 'Business Term To',
 	},
 	comp_status: {
 		z: '登记状态',
-		e: 'comp_status',
+		e: 'Registration Status',
 	},
 	comp_l: {
 		z: '住所',
-		e: 'comp_l',
+		e: 'Company Residence',
 	},
 	comp_range: {
 		z: '经营范围',
-		e: 'comp_range',
+		e: 'Business Scope',
 	},
-
 	comp_bad: {
 		z: '经营异常',
-		e: 'comp_bad',
+		e: 'Abnormal Business',
 	},
 	comp_punish: {
 		z: '行政处罚',
-		e: 'comp_punish',
+		e: 'Administrative Penalty',
 	},
 	comp_seal: {
 		z: '股权出质',
-		e: 'comp_seal',
+		e: 'Equity Pledge',
 	},
 	comp_diya: {
 		z: '动产抵押',
-		e: 'comp_diya',
+		e: 'Chattel Mortgate',
 	},
 	comp_qian: {
 		z: '欠税公告',
-		e: 'comp_qian',
+		e: 'Notice of Tax Arrears',
 	},
 	comp_sifa: {
 		z: '司法拍卖',
-		e: 'comp_sifa',
+		e: 'Judicial Auction',
 	},
 	comp_court: {
 		z: '法律诉讼',
-		e: 'comp_court',
+		e: 'Legal Proceedings',
 	},
 	comp_court_p: {
 		z: '法院公告',
-		e: 'comp_court_p',
+		e: 'Court Notice',
 	},
 	court_notice: {
 		z: '开庭公告',
-		e: 'court_notice',
+		e: 'Announcement of Court Session',
 	},
 	comp_risk: {
 		z: '企业风险',
-		e: 'comp_risk',
+		e: 'Company Risk',
 	},
-
 
 	sys_acc_plho: {
 		z: '请输入手机号',
-		e: 'phone number',
+		e: 'Phone Number',
 	},
 	sys_pwd_plho: {
 		z: '请输入密码',
-		e: 'password',
+		e: 'Password',
 	},
+	old_pwd: {
+		z: '旧密码',
+		e: 'Old Password',
+	},
+	new_pwd: {
+		z: '新密码',
+		e: 'New Password',
+	},
+	new_pwd_once: {
+		z: '重复新密码',
+		e: 'New Password Again',
+	},
+	confirm_btn: {
+		z: '确定',
+		e: 'Confirm',
+	},
+	backto_login: {
+		z: '返回登录',
+		e: 'To Login',
+	},
+	
+
 }
 
 // 外部方法

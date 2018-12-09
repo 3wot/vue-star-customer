@@ -26,9 +26,14 @@ window.UPLOAD_NUM = 0
 Vue.prototype.pp = GETJSON
 Vue.prototype.TT = { KK : 'z'}
 Vue.prototype.LL = LL
-Vue.prototype.warn = function(msg) {
+Vue.prototype.warn = function(msg,msg_en) {
+  const lan = this.TT.KK
+  let value = msg
+  if (lan == 'e') {
+    value = msg_en || msg
+  }
 	this.$message({
-      	message: msg,
+      	message: value,
       	type: 'warning',
     })	
 }

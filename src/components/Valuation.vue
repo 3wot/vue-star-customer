@@ -8,7 +8,7 @@
 				
 				<div class="sec">
 					<p class="main-title"><span class="span-title">{{LL('input')[ZZ.KK]}}</span></p>
-					<el-form :model="form1" :size="formSize" label-width="130px" label-position="left">
+					<el-form :model="form1" :size="formSize" label-width="150px" label-position="left">
 						<el-row :gutter="15">
 
 							<el-col :span="12">
@@ -275,7 +275,7 @@ export default {
 			if (Location && Area && Usage) {
 
 			} else {
-				this.warn('请完成标红的项目！')
+				this.warn('请完成标红的项目！','Please complete the red input box!')
 				return
 			}
 			const param = {
