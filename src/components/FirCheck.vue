@@ -11,7 +11,7 @@
 						<el-row :gutter="15">
 							<el-col :span="15">
 								<el-form-item :label="LL('comp_name')[ZZ.KK]" class="label-danger">
-									<el-input v-model="CompanyName" :placeholder="LL('comp_name')[ZZ.KK]"></el-input>
+									<el-input @input="handleNameChange" v-model="CompanyName" :placeholder="LL('comp_name')[ZZ.KK]"></el-input>
 								</el-form-item>
 							</el-col>
 							<el-col :span="24">
@@ -280,13 +280,18 @@ methods:{
 	time(num) {
 		if (num) {
 			const a = parseInt(num)
-			const time = new Date(a)
-			const year = time.getFullYear()
-			const month = time.getMonth() + 1
-			const day = time.getDate()
-			return year + '-' + month + '-' + day	
+			if (a) {
+				const time = new Date(a)
+				const year = time.getFullYear()
+				const month = time.getMonth() + 1
+				const day = time.getDate()
+				return year + '-' + month + '-' + day
+			} else {
+				return '-'
+			}
+			
 		} else {
-			return ''
+			return '-'
 		}
 		
 	},
@@ -301,6 +306,36 @@ methods:{
 		   	params:{ name }
 		   });
 		window.open(routeData.href, '_blank')
+	},
+
+	// 处理企业名称清空的情况
+	handleNameChange() {
+		const {
+			CompanyName,
+		} = this
+		if (CompanyName == '') {
+			this.CorpCreditCode = ''
+			this.CompanyLegalPerson = ''
+			this.RegisterCapital = ''
+			this.BusinessStartDate = ''
+			this.BusinessEndDate = ''
+			this.Status = ''
+			this.Address = ''
+			this.BusinessInfo = ''
+			this.AdministrativePenaltyInfo = ''
+			this.SharePledgeInfo = ''
+			this.MovablesPledgeInfo = ''
+			this.TaxOwingInfo = ''
+			this.JudicialSaleInfo = ''
+			this.LawsuitInfo = ''
+			this.CourtAnnouncementInfo = ''
+			this.TrialInfo = ''
+			this.CreditEnforcementInfo = ''
+			this.CourtEnforcementInfo = ''
+			this.CriminalInfo = ''
+			this.RiskInfo = ''
+			this.BusinessScope = ''
+		}
 	},
 
 },

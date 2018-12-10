@@ -28,7 +28,7 @@
 							<el-col :span="20">
 								<el-form-item label="" class="text-left">
 									<el-button type="primary" @click="handleLogin">{{LL('confirm_btn')[ZZ.KK]}}</el-button>
-				    				<el-button type="primary" @click="gotoLogin">{{LL('backto_login')[ZZ.KK]}}</el-button>
+				    				<!-- <el-button type="primary" @click="gotoLogin">{{LL('backto_login')[ZZ.KK]}}</el-button> -->
 								</el-form-item>
 							</el-col>
 
@@ -36,6 +36,7 @@
 					</el-form>
 				</div>
 			</el-main>
+			<Footer></Footer>
 		</el-container>
 
 	</div>
@@ -43,10 +44,11 @@
 
 <script>
 import Header from './Header'
+import Footer from './Footer'
 
 export default {
 	components:{
-		Header,
+		Header, Footer,
 	},
 	name: 'Change',
 	data () {
@@ -93,7 +95,9 @@ export default {
 					}
 					this.pp('ChangePwd', param, res => {
 						if (res.ret) {
-					        this.warn('修改成功，请返回登录页面，重新登录','Success,please return to the login page and login again')
+					        // this.warn('修改成功，请返回登录页面，重新登录','Success,please return to the login page and login again')
+					        this.warn('修改成功，将返回登录页面，重新登录','Success,please login again')
+					        this.gotoLogin()
 						} else {
 							this.warn(res.msg)
 						}
