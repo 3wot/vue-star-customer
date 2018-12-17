@@ -147,3 +147,75 @@ GetPersonInfo
     // VisitUserNumber : 访问用户数
     // RegUserNumber : 注册用户数
     // ApprovalUserNumber : 成交用户数
+
+
+  // 估值
+    public string OperationDateTime = "";
+        public string HouseLocation1 = "";
+        public string HouseLocation2 = "";
+        public string HouseArea = "";
+        public string HouseUsage = "";
+        public string HouseTotalFloor = "";
+        public string HouseFloor = "";
+        public string HouseOrientation = "";
+        public string HouseAge = "";
+        public string HouseUnitPrice = "";
+        public string HouseTotalPrice = "";
+        public string HousePledgePercentage = "";
+        public string HousePledgePrice = "";
+        public string HouseAveragePrice = "";
+        public string HouseDealPeriod = "";
+        public string HouseNearbyName1 = "";
+        public string HouseNearbyName2 = "";
+        public string HouseNearbyName3 = "";
+        public string HouseNearbyName4 = "";
+        public string HouseNearbyAveragePrice1 = "";
+        public string HouseNearbyAveragePrice2 = "";
+        public string HouseNearbyAveragePrice3 = "";
+        public string HouseNearbyAveragePrice4 = "";
+        public string BuildingFinishYear = "";
+
+
+        人
+
+        public string OperationDateTime = "";
+        public string BorrowerName = "";
+        public string BorrowerIDNO = "";
+        public string BorrowerMobile = "";
+        public string BorrowerSecurityInfo = "";
+        public string BorrowerLawsuitInfo = "";
+        public string BorrowerEnforcementInfo = "";
+        //public string BorrowerEnforcementInfoList = "";
+        //public string BorrowerEnforcementInfoDetail = "";
+        public string BorrowerCreditInfo = "";
+        public string BorrowerP2PBlacklistInfo = "";
+        public string BorrowerTaxInfo = "";
+        public string BorrowerCriminalInfo = "";
+        public string BorrowerLoanExpirationInfo = "";
+        public string BorrowerMultipointLendingInfo = "";
+
+        企业
+
+        public string OperationDateTime = "";
+        public string CompanyName = "";
+        public string CompanySecurityIDNO = "";
+        public string CompanyPhone = "";
+        public string CorpAdministrativePenaltyInfo = "";
+        public string CorpSharePledgeInfo = "";
+        public string CorpMovablesPledgeInfo = "";
+        public string CorpTaxOwingInfo = "";
+        public string CorpJudicialSaleInfo = "";
+        public string CorpLawsuitInfo = "";
+        public string CorpCourtAnnouncementInfo = "";
+        public string CorpTrialInfo = "";
+        public string CorpCreditEnforcementInfo = "";
+        public string CorpCourtEnforcementInfo = "";
+        public string CorpCriminalInfo = "";
+        public string CorpBusinessScope = "";
+        public string CompanyLegalPersonName = "";
+        public string CompanyLegalPersonIDNO = "";
+        public string RegisterCapital = "";
+        public string BusinessStartDate = "";
+        public string BusinessEndDate = "";
+        public string Status = "";
+        public string Address = "";

@@ -66,6 +66,10 @@ const urls = {
 	'ChangePwd': 'ChangePwd',
 	'GetPersonInfo': 'GetPersonInfo',
 	'GetCompanyInfo': 'GetCompanyInfo',
+
+	'GetHouseValuationHistory': 'GetHouseValuationHistory',
+	'GetPersonAuditionHistory': 'GetPersonAuditionHistory',
+	'GetCompanyAuditionHistory': 'GetCompanyAuditionHistory',
 }
 
 // 外部方法

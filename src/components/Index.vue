@@ -1,11 +1,7 @@
 <template>
 	<div class="index">
 		<el-container class="c-outer">
-	
-			<!-- <el-header class="c-header">
-				<span>首页</span>
-				<span class="logout pull-right">退出</span>
-			</el-header> -->
+			
 			<Header :title="LL('index')[ZZ.KK]"></Header>
 			
 

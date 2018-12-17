@@ -35,9 +35,17 @@ const urls = {
 		z: '企业风险查询',
 		e: 'Company Risk Query',
 	},
-	check_log: {
-		z: '查询记录',
-		e: 'Query Records',
+	check_log1: {
+		z: '估值查询记录',
+		e: 'Valuation Query Records',
+	},
+	check_log2: {
+		z: '自然人查询记录',
+		e: 'Person Query Records',
+	},
+	check_log3: {
+		z: '企业查询记录',
+		e: 'Company Query Records',
 	},
 	change_pwd: {
 		z: '修改密码',
@@ -292,7 +300,42 @@ const urls = {
 		z: '返回登录',
 		e: 'To Login',
 	},
-	
+	query_record: {
+		z: '历史查询记录',
+		e: 'Query Records',
+	},
+	query_r_id: {
+		z: '订单编号',
+		e: 'Order Number',
+	},
+	query_r_c: {
+		z: '查询内容',
+		e: 'Query Content',
+	},
+	query_r_k: {
+		z: '查询关键字',
+		e: 'Query Keywords',
+	},
+	query_r_t: {
+		z: '下单时间',
+		e: 'Query Time',
+	},
+	prev: {
+		z: '上一页',
+		e: 'Previous',
+	},
+	next: {
+		z: '下一页',
+		e: 'Next',
+	},
+	di: {
+		z: '第',
+		e: '',
+	},
+	page: {
+		z: '页',
+		e: 'Page',
+	},
 
 }
 

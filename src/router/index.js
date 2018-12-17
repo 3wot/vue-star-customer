@@ -7,6 +7,7 @@ import FirstCheck from '@/components/FirstCheck'
 import FirstDetail from '@/components/FirstDetail'
 import FirCheck from '@/components/FirCheck'
 import Change from '@/components/Change'
+import History from '@/components/History'
 
 Vue.use(Router)
 
@@ -54,6 +55,12 @@ export default new Router({
 			path: '/change',
 			name: 'change',
 			component: Change
+		},
+		{
+			// 查询历史
+			path: '/history/:type',
+			name: 'history',
+			component: History
 		},
 		
 		

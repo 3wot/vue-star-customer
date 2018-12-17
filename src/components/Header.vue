@@ -12,6 +12,15 @@
 			</span>
 			<el-dropdown-menu slot="dropdown">
 				<el-dropdown-item>
+					<span @click="gotoQuery(1)">{{LL('check_log1')[ZZ.KK]}}</span>
+				</el-dropdown-item>
+				<el-dropdown-item>
+					<span @click="gotoQuery(2)">{{LL('check_log2')[ZZ.KK]}}</span>
+				</el-dropdown-item>
+				<el-dropdown-item>
+					<span @click="gotoQuery(3)">{{LL('check_log3')[ZZ.KK]}}</span>
+				</el-dropdown-item>
+				<el-dropdown-item>
 					<span @click="gotoChange">{{LL('change_pwd')[ZZ.KK]}}</span>
 				</el-dropdown-item>
 				<el-dropdown-item>
@@ -35,7 +44,7 @@ export default {
 	// Button,Field
 	},
 	name: 'Header',
-	props: ['title','back','refresh'],
+	props: ['title','back','refresh','query'],
 	data () {
 		return {
 			Username: '',
@@ -65,6 +74,12 @@ export default {
 			// 	this.$router.push({ name : 'opList', params: { id, hid }})
 			// }
 			this.$router.go(-1)
+		},
+
+		gotoQuery(ty) {
+			const type = parseInt(ty)
+			this.$router.push({ name : 'history', params: { type }})
+			this.$emit('query')
 		},
 
 		// 刷新
