@@ -279,8 +279,6 @@ export default {
 				return
 			}
 			const param = {
-				OrderId: id,
-				HouseId: hid,
 				OwnerName,
 				Location,
 				Usage,

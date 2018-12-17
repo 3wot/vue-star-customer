@@ -12,7 +12,7 @@ const urls = {
 	'OrderOperationList' : 'OrderOperationList',
 	'GetHouseValuationParams' : 'GetHouseValuationParams',
 
-	'HouseValuation' : 'HouseValuation',
+	'HouseValuation' : 'HouseValuation2',
 	'CompleteHouseValuation': 'CompleteHouseValuation',
 	'GetConfirmHouseValuationParams' : 'GetConfirmHouseValuationParams',
 	'CompleteConfirmHouseValuation' : 'CompleteConfirmHouseValuation',
