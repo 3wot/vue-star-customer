@@ -89,9 +89,12 @@
 		 						<tbody>
 		 							
 		 							<tr v-for="(order,index) in orderList" :key="index">
-		 								<td>{{order.content}}</td>
-		 								<td>{{order.keyword}}</td>
-		 								<td>{{order.time}}</td>
+		 								<td height="30px"><span>{{order.content}}</span></td>
+		 								<td height="30px"><span>{{order.keyword}}</span></td>
+		 								<td height="30px"><span>{{order.time}}</span></td>
+		 							</tr>
+		 							<tr>
+		 								<td colspan="3"></td>
 		 							</tr>
 		 						</tbody>
 		 					</table>	
@@ -195,7 +198,7 @@ export default {
 								  ';房屋面积：' + (item.HouseArea||'-') + '平米'
 					} else if (type == 2) {
 						content = '自然人风险'
-						keyword = '姓名' + (item.BorrowerName || '-') +
+						keyword = '姓名：' + (item.BorrowerName || '-') +
 								  ';用户手机号：' + (item.BorrowerMobile||'-') + 
 								  ';身份证号：' + (item.BorrowerIDNO||'-')
 					} else if (type == 3) {
