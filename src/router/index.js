@@ -8,6 +8,9 @@ import FirstDetail from '@/components/FirstDetail'
 import FirCheck from '@/components/FirCheck'
 import Change from '@/components/Change'
 import History from '@/components/History'
+import FirstCheckResult from '@/components/FirstCheckResult'
+import FirCheckResult from '@/components/FirCheckResult'
+import ValuationResult from '@/components/ValuationResult'
 
 Vue.use(Router)
 
@@ -61,6 +64,24 @@ export default new Router({
 			path: '/history/:type',
 			name: 'history',
 			component: History
+		},
+		{
+			// 估值结果
+			path: '/firstCheckResult/:hid',
+			name: 'firstCheckResult',
+			component: FirstCheckResult
+		},
+		{
+			// 自然人结果
+			path: '/firCheckResult/:hid',
+			name: 'firCheckResult',
+			component: FirCheckResult
+		},
+		{
+			// 企业结果
+			path: '/valuationResult/:hid',
+			name: 'valuationResult',
+			component: ValuationResult
 		},
 		
 		

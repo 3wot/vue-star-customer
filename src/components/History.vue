@@ -79,12 +79,14 @@
  						<!-- <div class="h-table-body"> -->
  							<table class="show-table" cellpadding="0" cellspacing="0" border="1">
 	 							<col width="200" />
-	 							<col width="500" />
+	 							<col width="400" />
 	 							<col width="200" />
+	 							<col width="100" />
 	 							<thead>
 		 							<th>{{LL('query_r_c')[ZZ.KK]}}</th>
 		 							<th>{{LL('query_r_k')[ZZ.KK]}}</th>
 		 							<th>{{LL('query_r_t')[ZZ.KK]}}</th>
+		 							<th></th>
 		 						</thead>
 		 						<tbody>
 		 							
@@ -92,9 +94,10 @@
 		 								<td height="30px"><span>{{order.content}}</span></td>
 		 								<td height="30px"><span>{{order.keyword}}</span></td>
 		 								<td height="30px"><span>{{order.time}}</span></td>
+		 								<td height="30px"><span class="first-detail" @click="gotoLook(order)">查看</span></td>
 		 							</tr>
 		 							<tr>
-		 								<td colspan="3"></td>
+		 								<td colspan="4"></td>
 		 							</tr>
 		 						</tbody>
 		 					</table>	
@@ -208,7 +211,8 @@ export default {
 					rArr.push({
 						content,
 						keyword,
-						time: item.OperationDateTime
+						time: item.OperationDateTime,
+						historyId: item.HistoryId
 					})
 				})
 				return rArr
@@ -233,6 +237,19 @@ export default {
 			const num = this.PageIndex
 			this.PageIndex = num + 1
 			this.changeType()
+		},
+
+		// 点击查看
+		gotoLook(order) {
+			console.log(order)
+			const { type } = this.$route.params
+			if (type == 1) {
+				
+			} else if (type == 2) {
+				
+			} else if (type == 3) {
+				
+			}
 		},
 		
 
@@ -311,5 +328,8 @@ export default {
 .h-table-head table,.h-table-body table {
 	width:100%;
 }
-
+.first-detail {
+	color: #409eff;
+	cursor: pointer;
+}
 </style>

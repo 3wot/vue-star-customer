@@ -175,7 +175,7 @@ export default {
 	components:{
 		Header, ImgUpload, ImgList, Footer
 	},
-	name: 'FirCheck',
+	name: 'FirCheckResult',
 	data () {
 		return {
 			ZZ:{},
