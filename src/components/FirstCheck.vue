@@ -69,6 +69,7 @@
 								<td>{{LL('court_exec')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{EnforcementInfo||'-'}}
+									<span v-if="HistoryId" @click="gotoDetail" class="first-detail">{{LL('detail')[ZZ.KK]}}</span>
 								</td>
 							</tr>
 							<tr>
@@ -149,6 +150,7 @@ export default {
 			CriminalInfo: "",
 			LoanExpirationInfo: "",
 			MultipointLendingInfo: "",
+			HistoryId: '',
 
 	}
 },
@@ -187,7 +189,9 @@ methods:{
 					CriminalInfo,
 					LoanExpirationInfo,
 					MultipointLendingInfo,
+					HistoryId,
 				} = res.data || {}
+				this.HistoryId = HistoryId
 				this.SecurityInfo = SecurityInfo
 				this.LawsuitInfo = LawsuitInfo
 				this.EnforcementInfo = EnforcementInfo
@@ -204,15 +208,15 @@ methods:{
 	},
 
 	// 去详情页面
-	gotoDetail(type) {
-		const name = this.BorrowerName
+	gotoDetail() {
 		const id = this.BorrowerIDNO
-		// this.$router.push({ 'name' : 'firstDetail', params: { name, id }})
+		const hid = this.HistoryId
+		const name = this.BorrowerName
 		let routeData = this.$router.resolve({
-			name: "firstDetail",
+		   	name: "firstDetail",
 		   	// query: params,
-		   	params:{ name, id }
-		   });
+		   	params:{ name, hid, id }
+		});
 		window.open(routeData.href, '_blank')
 	},
 

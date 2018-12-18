@@ -46,7 +46,7 @@ export default new Router({
 		},
 		{
 			// 详情
-			path: '/firstDetail/:name/:id?',
+			path: '/firstDetail/:name/:hid/:id?',
 			name: 'firstDetail',
 			component: FirstDetail
 		},

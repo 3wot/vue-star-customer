@@ -219,3 +219,21 @@ GetPersonInfo
         public string BusinessEndDate = "";
         public string Status = "";
         public string Address = "";
+
+
+三个接口
+GetHouseValuationHistoryById(string uid, string token, string historyId) 房
+GetPersonAuditionHistoryById(string uid, string token, string historyId) 人
+GetCompanyAuditionHistoryById(string uid, string token, string historyId) 企业
+
+
+todo
+向东我整理了一下，刚才讲的：
+1.查询系统，返回按钮统一返回首页
+2.详情，pc和查询放开
+3.查询记录页面，添加查看列，直接跳转到table表格展示对应数据（三个接口）
+4.右上角按钮点击不灵敏
+
+
+查询系统详情调用这个 GetEnforcementInfoDetailHistory(string uid, string token, string historyId, string type)
+type两个值：查人传person，查企业传corp

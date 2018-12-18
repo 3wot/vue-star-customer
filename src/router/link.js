@@ -70,6 +70,10 @@ const urls = {
 	'GetHouseValuationHistory': 'GetHouseValuationHistory',
 	'GetPersonAuditionHistory': 'GetPersonAuditionHistory',
 	'GetCompanyAuditionHistory': 'GetCompanyAuditionHistory',
+	'GetEnforcementInfoDetailHistory': 'GetEnforcementInfoDetailHistory',
+	'GetEnforcementInfoDetail2': 'GetEnforcementInfoDetail2',
+	
+	
 }
 
 // 外部方法

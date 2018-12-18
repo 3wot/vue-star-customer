@@ -336,6 +336,40 @@ const urls = {
 		z: '页',
 		e: 'Page',
 	},
+	detail: {
+		z: '详情',
+		e: 'Detail',
+	},
+
+	case_num: {
+		z: '案件编号',
+		e: 'Case Number',
+	},
+	case_status: {
+		z: '案件状态',
+		e: 'Case Status',
+	},
+	court_name: {
+		z: '法院名称',
+		e: 'Court Name',
+	},
+	entity_num: {
+		z: '实体号',
+		e: 'Entity Number',
+	},
+	entity_name: {
+		z: '实体名称',
+		e: 'Entity Name',
+	},
+	exec_money: {
+		z: '执行金额',
+		e: 'Execution Amount ',
+	},
+	date: {
+		z: '日期',
+		e: 'Date',
+	},
+
 
 }
 

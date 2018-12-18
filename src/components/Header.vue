@@ -6,25 +6,25 @@
 		<span>{{title}}</span>
 
 		<!-- <span class="logout pull-right" @click="logOut">退出</span> -->
-		<el-dropdown trigger="click" class="h-name">
+		<el-dropdown trigger="click" class="h-name" @command="handleCommand">
 			<span class="el-dropdown-link">
 				{{Username}}<i class="el-icon-arrow-down el-icon--right"></i>
 			</span>
 			<el-dropdown-menu slot="dropdown">
-				<el-dropdown-item>
-					<span @click="gotoQuery(1)">{{LL('check_log1')[ZZ.KK]}}</span>
+				<el-dropdown-item command="1">
+					<span>{{LL('check_log1')[ZZ.KK]}}</span>
 				</el-dropdown-item>
-				<el-dropdown-item>
-					<span @click="gotoQuery(2)">{{LL('check_log2')[ZZ.KK]}}</span>
+				<el-dropdown-item command="2">
+					<span>{{LL('check_log2')[ZZ.KK]}}</span>
 				</el-dropdown-item>
-				<el-dropdown-item>
-					<span @click="gotoQuery(3)">{{LL('check_log3')[ZZ.KK]}}</span>
+				<el-dropdown-item command="3">
+					<span>{{LL('check_log3')[ZZ.KK]}}</span>
 				</el-dropdown-item>
-				<el-dropdown-item>
-					<span @click="gotoChange">{{LL('change_pwd')[ZZ.KK]}}</span>
+				<el-dropdown-item command="4">
+					<span>{{LL('change_pwd')[ZZ.KK]}}</span>
 				</el-dropdown-item>
-				<el-dropdown-item>
-					<span @click="logOut">{{LL('logout')[ZZ.KK]}}</span>
+				<el-dropdown-item command="5">
+					<span>{{LL('logout')[ZZ.KK]}}</span>
 				</el-dropdown-item>
 			</el-dropdown-menu>
 			</el-dropdown>
@@ -57,6 +57,20 @@ export default {
 	},
 	methods:{
 
+		handleCommand(cmd) {
+			if (cmd == 1) {
+				this.gotoQuery(1)
+			} else if (cmd == 2) {
+				this.gotoQuery(2)
+			} else if (cmd == 3) {
+				this.gotoQuery(3)
+			} else if (cmd == 4) {
+				this.gotoChange()
+			} else if (cmd == 5) {
+				this.logOut()
+			} 
+		},
+
 		// 退出
 		logOut() {
 			this.$router.push({ name : 'login' })
@@ -64,8 +78,8 @@ export default {
 
 		// 后退
 		goBack () {
-			const { name } = this.$route
-			const { id, hid } = this.$route.params
+			// const { name } = this.$route
+			// const { id, hid } = this.$route.params
 			// if (name == 'opList' || name == 'look') { // 返回首页
 			// 	this.$router.push({ name : 'index' })
 			// } else if (name == 'firstDetail') {
@@ -73,7 +87,8 @@ export default {
 			// } else {
 			// 	this.$router.push({ name : 'opList', params: { id, hid }})
 			// }
-			this.$router.go(-1)
+			// this.$router.go(-1)
+			this.$router.push({ name : 'index'})
 		},
 
 		gotoQuery(ty) {

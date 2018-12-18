@@ -133,6 +133,7 @@
 								<td>{{LL('court_exec')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ CourtEnforcementInfo || '-'}}
+									<span v-if="HistoryId" @click="gotoDetail" class="first-detail">{{LL('detail')[ZZ.KK]}}</span>
 								</td>
 							</tr>
 							<tr>
@@ -204,6 +205,7 @@ export default {
 			CriminalInfo: '',
 			RiskInfo: '',
 			BusinessScope: '',
+			HistoryId: "",
 	}
 },
 mounted () {
@@ -249,7 +251,9 @@ methods:{
 					CriminalInfo,
 					RiskInfo,
 					BusinessScope,
+					HistoryId,
 				} = res.data || {}
+				this.HistoryId = HistoryId
 				this.CorpCreditCode = CorpCreditCode
 				this.CompanyLegalPerson = CompanyLegalPerson
 				this.RegisterCapital = RegisterCapital
@@ -297,14 +301,14 @@ methods:{
 	},
 
 	// 去详情页面
-	gotoDetail(type) {
+	gotoDetail() {
+		const hid = this.HistoryId
 		const name = this.CompanyName
-		// this.$router.push({ name : 'firstDetail', params: { name }})
 		let routeData = this.$router.resolve({
-			name: "firstDetail",
+		   	name: "firstDetail",
 		   	// query: params,
-		   	params:{ name }
-		   });
+		   	params:{ name, hid }
+		});
 		window.open(routeData.href, '_blank')
 	},
 
