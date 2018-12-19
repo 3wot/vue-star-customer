@@ -5,25 +5,9 @@
 			<Header back="true" :title="LL('comp_check')[ZZ.KK]"></Header>
 			
 			<el-main class="c-main">
+				
 				<div class="sec">
-					<p class="main-title"><span class="span-title">{{LL('input')[ZZ.KK]}}</span></p>
-					<el-form :size="formSize" label-width="170px" label-position="left">
-						<el-row :gutter="15">
-							<el-col :span="15">
-								<el-form-item :label="LL('comp_name')[ZZ.KK]" class="label-danger">
-									<el-input @input="handleNameChange" v-model="CompanyName" :placeholder="LL('comp_name')[ZZ.KK]"></el-input>
-								</el-form-item>
-							</el-col>
-							<el-col :span="24">
-								<el-button class="pull-left" type="primary" @click="firstCheck">{{LL('check')[ZZ.KK]}}</el-button>
-								<span v-if="loading" class="loading"><i class="el-icon-loading"></i></span>
-							</el-col>
-						</el-row>
-						
-
-					</el-form>
-				</div>
-				<div class="sec">
+					<p class="main-title"><span class="span-title">&nbsp;<span v-if="loading" class="loading"><i class="el-icon-loading"></i></span></span></p>
 					<table class="show-table" cellpadding="0" cellspacing="0" border="1">
 						<tbody>
 							<tr>
@@ -41,11 +25,11 @@
 								<td colspan="1">{{LL('comp_name')[ZZ.KK]}}：</td>
 								<td colspan="2">{{CompanyName || '-'}}</td>
 								<td colspan="1">{{LL('comp_id')[ZZ.KK]}}：</td>
-								<td colspan="2">{{CorpCreditCode|| '-'}}</td>
+								<td colspan="2">{{CompanySecurityIDNO|| '-'}}</td>
 							</tr>
 							<tr>
 								<td colspan="1">{{LL('comp_person')[ZZ.KK]}}：</td>
-								<td colspan="2">{{CompanyLegalPerson || '-'}}</td>
+								<td colspan="2">{{CompanyLegalPersonName || '-'}}</td>
 								<td colspan="1">{{LL('comp_mon')[ZZ.KK]}}：</td>
 								<td colspan="2">{{RegisterCapital || '-'}}</td>
 							</tr>
@@ -63,7 +47,7 @@
 							</tr>
 							<tr>
 								<td colspan="1">{{LL('comp_range')[ZZ.KK]}}：</td>
-								<td colspan="5">{{BusinessScope || '-'}}</td>
+								<td colspan="5">{{CorpBusinessScope || '-'}}</td>
 							</tr>
 							<tr>
 								<td colspan="6" class="bg-e">{{LL('risk_info')[ZZ.KK]}}</td>
@@ -78,68 +62,68 @@
 							<tr>
 								<td>{{LL('comp_punish')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{ AdministrativePenaltyInfo || '-'}}
+									{{ CorpAdministrativePenaltyInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('comp_seal')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{ SharePledgeInfo || '-'}}
+									{{ CorpSharePledgeInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('comp_diya')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{ MovablesPledgeInfo || '-'}}
+									{{ CorpMovablesPledgeInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('comp_qian')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{ TaxOwingInfo || '-'}}
+									{{ CorpTaxOwingInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('comp_sifa')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{ JudicialSaleInfo || '-'}}
+									{{ CorpJudicialSaleInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('comp_court')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{ LawsuitInfo || '-'}}
+									{{ CorpLawsuitInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('comp_court_p')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{ CourtAnnouncementInfo || '-'}}
+									{{ CorpCourtAnnouncementInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('court_notice')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{ TrialInfo || '-'}}
+									{{ CorpTrialInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('dis_exec')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{ CreditEnforcementInfo || '-'}}
+									{{ CorpCreditEnforcementInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('court_exec')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{ CourtEnforcementInfo || '-'}}
+									{{ CorpCourtEnforcementInfo || '-'}}
 									<span v-if="HistoryId" @click="gotoDetail" class="first-detail">{{LL('detail')[ZZ.KK]}}</span>
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('serious_no')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{ CriminalInfo || '-'}}
+									{{ CorpCriminalInfo || '-'}}
 								</td>
 							</tr>
 							<tr>
@@ -151,7 +135,7 @@
 		<!-- 					<tr>
 								<td>经营范围</td>
 								<td colspan="5">
-									{{ BusinessScope || '-'}}
+									{{ CorpBusinessScope || '-'}}
 								</td>
 							</tr> -->
 						</tbody>
@@ -180,101 +164,95 @@ export default {
 		return {
 			ZZ:{},
 			loading: false,
-			formSize : 'small',
 			
 			CompanyName: '',
 			
-			CorpCreditCode: '',
-			CompanyLegalPerson: '',
+			CompanySecurityIDNO: '',
+			CompanyLegalPersonName: '',
 			RegisterCapital: '',
 			BusinessStartDate: '',
 			BusinessEndDate: '',
 			Status: '',
 			Address: '',
 			BusinessInfo: '',
-			AdministrativePenaltyInfo: '',
-			SharePledgeInfo: '',
-			MovablesPledgeInfo: '',
-			TaxOwingInfo: '',
-			JudicialSaleInfo: '',
-			LawsuitInfo: '',
-			CourtAnnouncementInfo: '',
-			TrialInfo: '',
-			CreditEnforcementInfo: '',
-			CourtEnforcementInfo: '',
-			CriminalInfo: '',
+			CorpAdministrativePenaltyInfo: '',
+			CorpSharePledgeInfo: '',
+			CorpMovablesPledgeInfo: '',
+			CorpTaxOwingInfo: '',
+			CorpJudicialSaleInfo: '',
+			CorpLawsuitInfo: '',
+			CorpCourtAnnouncementInfo: '',
+			CorpTrialInfo: '',
+			CorpCreditEnforcementInfo: '',
+			CorpCourtEnforcementInfo: '',
+			CorpCriminalInfo: '',
 			RiskInfo: '',
-			BusinessScope: '',
+			CorpBusinessScope: '',
 			HistoryId: "",
 	}
 },
 mounted () {
 	this.ZZ = this.TT
+	this.firstCheck()
 },
 methods:{
 
 	// 初审
 	firstCheck () {
-		const {
-			CompanyName
-		} = this
+		const historyId = this.$route.params.hid
 		const param = {
-		  	CompanyName,
-		}
-		if (!CompanyName) {
-			this.warn('请输入企业名称！','Please input company name')
-			return
+			historyId,
 		}
 		this.loading = true
-		this.pp('GetCompanyInfo', param, res => {
+		this.pp('GetCompanyAuditionHistoryById', param, res => {
 			this.loading = false
 			if (res.ret) {
 				const {
-					CorpCreditCode,
-					CompanyLegalPerson,
+					CompanyName,
+					CompanySecurityIDNO,
+					CompanyLegalPersonName,
 					RegisterCapital,
 					BusinessStartDate,
 					BusinessEndDate,
 					Status,
 					Address,
 					BusinessInfo,
-					AdministrativePenaltyInfo,
-					SharePledgeInfo,
-					MovablesPledgeInfo,
-					TaxOwingInfo,
-					JudicialSaleInfo,
-					LawsuitInfo,
-					CourtAnnouncementInfo,
-					TrialInfo,
-					CreditEnforcementInfo,
-					CourtEnforcementInfo,
-					CriminalInfo,
+					CorpAdministrativePenaltyInfo,
+					CorpSharePledgeInfo,
+					CorpMovablesPledgeInfo,
+					CorpTaxOwingInfo,
+					CorpJudicialSaleInfo,
+					CorpLawsuitInfo,
+					CorpCourtAnnouncementInfo,
+					CorpTrialInfo,
+					CorpCreditEnforcementInfo,
+					CorpCourtEnforcementInfo,
+					CorpCriminalInfo,
 					RiskInfo,
-					BusinessScope,
-					HistoryId,
+					CorpBusinessScope,
 				} = res.data || {}
-				this.HistoryId = HistoryId
-				this.CorpCreditCode = CorpCreditCode
-				this.CompanyLegalPerson = CompanyLegalPerson
+				this.CompanyName = CompanyName
+				this.CompanySecurityIDNO = CompanySecurityIDNO
+				this.CompanyLegalPersonName = CompanyLegalPersonName
 				this.RegisterCapital = RegisterCapital
 				this.BusinessStartDate = BusinessStartDate
 				this.BusinessEndDate = BusinessEndDate
 				this.Status = Status
 				this.Address = Address
 				this.BusinessInfo = BusinessInfo
-				this.AdministrativePenaltyInfo = AdministrativePenaltyInfo
-				this.SharePledgeInfo = SharePledgeInfo
-				this.MovablesPledgeInfo = MovablesPledgeInfo
-				this.TaxOwingInfo = TaxOwingInfo
-				this.JudicialSaleInfo = JudicialSaleInfo
-				this.LawsuitInfo = LawsuitInfo
-				this.CourtAnnouncementInfo = CourtAnnouncementInfo
-				this.TrialInfo = TrialInfo
-				this.CreditEnforcementInfo = CreditEnforcementInfo
-				this.CourtEnforcementInfo = CourtEnforcementInfo
-				this.CriminalInfo = CriminalInfo
+				this.CorpAdministrativePenaltyInfo = CorpAdministrativePenaltyInfo
+				this.CorpSharePledgeInfo = CorpSharePledgeInfo
+				this.CorpMovablesPledgeInfo = CorpMovablesPledgeInfo
+				this.CorpTaxOwingInfo = CorpTaxOwingInfo
+				this.CorpJudicialSaleInfo = CorpJudicialSaleInfo
+				this.CorpLawsuitInfo = CorpLawsuitInfo
+				this.CorpCourtAnnouncementInfo = CorpCourtAnnouncementInfo
+				this.CorpTrialInfo = CorpTrialInfo
+				this.CorpCreditEnforcementInfo = CorpCreditEnforcementInfo
+				this.CorpCourtEnforcementInfo = CorpCourtEnforcementInfo
+				this.CorpCriminalInfo = CorpCriminalInfo
 				this.RiskInfo = RiskInfo
-				this.BusinessScope = BusinessScope
+				this.CorpBusinessScope = CorpBusinessScope
 			} else {
 				this.warn(res.msg)
 			}
@@ -302,7 +280,7 @@ methods:{
 
 	// 去详情页面
 	gotoDetail() {
-		const hid = this.HistoryId
+		const hid = this.$route.params.hid
 		const name = this.CompanyName
 		let routeData = this.$router.resolve({
 		   	name: "firstDetail",
@@ -310,36 +288,6 @@ methods:{
 		   	params:{ name, hid }
 		});
 		window.open(routeData.href, '_blank')
-	},
-
-	// 处理企业名称清空的情况
-	handleNameChange() {
-		const {
-			CompanyName,
-		} = this
-		if (CompanyName == '') {
-			this.CorpCreditCode = ''
-			this.CompanyLegalPerson = ''
-			this.RegisterCapital = ''
-			this.BusinessStartDate = ''
-			this.BusinessEndDate = ''
-			this.Status = ''
-			this.Address = ''
-			this.BusinessInfo = ''
-			this.AdministrativePenaltyInfo = ''
-			this.SharePledgeInfo = ''
-			this.MovablesPledgeInfo = ''
-			this.TaxOwingInfo = ''
-			this.JudicialSaleInfo = ''
-			this.LawsuitInfo = ''
-			this.CourtAnnouncementInfo = ''
-			this.TrialInfo = ''
-			this.CreditEnforcementInfo = ''
-			this.CourtEnforcementInfo = ''
-			this.CriminalInfo = ''
-			this.RiskInfo = ''
-			this.BusinessScope = ''
-		}
 	},
 
 },

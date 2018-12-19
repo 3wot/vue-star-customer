@@ -7,87 +7,7 @@
 			<el-main class="c-main">
 				
 				<div class="sec">
-					<p class="main-title"><span class="span-title">{{LL('input')[ZZ.KK]}}</span></p>
-					<el-form :model="form1" :size="formSize" label-width="150px" label-position="left">
-						<el-row :gutter="15">
-
-							<el-col :span="12">
-								<el-form-item :label="LL('h_location')[ZZ.KK]" class="label-danger">
-									<el-input v-model="form1.Location" :placeholder="LL('h_location')[ZZ.KK]"></el-input>
-								</el-form-item>
-							</el-col>
-
-							<el-col :span="12">
-								<el-form-item :label="LL('h_area')[ZZ.KK]" class="label-danger">
-									<el-input type="number" @change="changeArea" v-model="form1.Area" :placeholder="LL('h_area')[ZZ.KK]"></el-input>
-								</el-form-item>
-							</el-col>
-
-							
-
-							
-
-							<el-col :span="12">
-								<el-form-item :label="LL('h_attr')[ZZ.KK]">
-									<el-select class="w-100" v-model="form1.Type" :placeholder="LL('h_attr')[ZZ.KK]">
-										<el-option v-for="(item,index) in op1" :key="index" :label="item" :value="item"></el-option>
-									</el-select>
-								</el-form-item>
-							</el-col>
-
-							<el-col :span="12">
-								<el-form-item :label="LL('h_use')[ZZ.KK]" class="label-danger">
-									<el-select class="w-100" v-model="form1.Usage" @change="changeUsage" :placeholder="LL('h_use')[ZZ.KK]">
-										<el-option v-for="(item,index) in op2" :key="index" :label="item" :value="item"></el-option>
-
-									</el-select>
-								</el-form-item>
-							</el-col>
-
-							<el-col :span="12">
-								<el-form-item :label="LL('h_build')[ZZ.KK]">
-									<el-date-picker v-model="form1.BuildingFinishYear" value-format="yyyy" class="w-100" type="year" :placeholder="LL('h_build')[ZZ.KK]"></el-date-picker>
-									<!-- <el-input v-model="form1.BuildingFinishYear" placeholder="请输入房龄"></el-input> -->
-								</el-form-item>
-							</el-col>
-
-							<el-col :span="12">
-								<el-form-item :label="LL('h_sou')[ZZ.KK]">
-									<el-select class="w-100" v-model="form1.Orientation" :placeholder="LL('h_sou')[ZZ.KK]">
-										<el-option v-for="(item,index) in op4" :key="index" :label="item" :value="item"></el-option>
-
-									</el-select>
-								</el-form-item>
-							</el-col>
-
-							<el-col :span="12">
-								<el-form-item :label="LL('total_floor')[ZZ.KK]">
-									<el-input type="number" v-model="form1.TotalFloor" :placeholder="LL('total_floor')[ZZ.KK]"></el-input>
-								</el-form-item>
-							</el-col>
-
-							<el-col :span="12">
-								<el-form-item :label="LL('h_floor')[ZZ.KK]">
-									<el-input type="number" v-model="form1.Floor" :placeholder="LL('h_floor')[ZZ.KK]"></el-input>
-								</el-form-item>
-							</el-col>
-
-							
-
-							<el-col :span="24">
-
-								<el-button class="pull-left" type="primary" @click="valuation">{{LL('valuation')[ZZ.KK]}}</el-button>
-								<span v-if="loading" class="loading"><i class="el-icon-loading"></i></span>
-							</el-col>
-
-						</el-row>
-						
-
-					</el-form>
-				</div>
-				
-				<div class="sec">
-					<!-- <p class="main-title"><span class="span-title">表格</span></p> -->
+					<p class="main-title"><span class="span-title">&nbsp;<span v-if="loading" class="loading"><i class="el-icon-loading"></i></span></span></p>
 					<table class="show-table" cellpadding="0" cellspacing="0" border="1">
 						<tbody>
 							<tr>
@@ -105,23 +25,24 @@
 							</tr> -->
 							<tr>
 								<td>{{LL('h_location')[ZZ.KK]}}</td>
-								<td colspan="4">{{form1.Location || '-'}}</td>
+								<td colspan="4">{{ HouseLocation1 || '-'}}</td>
 							</tr>							<tr>
 								<td>{{LL('h_area')[ZZ.KK]}}</td>
-								<td>{{form1.Area|| '-'}}</td>
+								<td>{{ HouseArea|| '-'}}</td>
 								<td>{{LL('h_use')[ZZ.KK]}}</td>
-								<td colspan="2">{{form1.Usage|| '-'}}</td>
+								<td colspan="2">{{HouseUsage|| '-'}}</td>
 							</tr>
 							<tr>
 								<td>{{LL('total_floor')[ZZ.KK]}}</td>
-								<td>{{form1.TotalFloor|| '-'}}</td>
+								<td>{{HouseTotalFloor|| '-'}}</td>
 								<td>{{LL('h_floor')[ZZ.KK]}}</td>
-								<td colspan="2">{{form1.Floor|| '-'}}</td>
+								<td colspan="2">{{HouseFloor|| '-'}}</td>
 							</tr>
 							<tr>
 								<td>{{LL('h_sou')[ZZ.KK]}}</td>
-								<td>{{form1.Orientation|| '-'}}</td>
+								<td>{{HouseOrientation|| '-'}}</td>
 								<td>{{LL('build_year')[ZZ.KK]}}</td>
+								<!-- <td colspan="2">{{BuildingFinishYear|| '-'}}</td> -->
 								<td colspan="2" :class="{'td-danger': BuildingYear>=35}">{{BuildingYear|| '-'}}</td>
 							</tr>
 							<tr>
@@ -172,46 +93,19 @@ export default {
 		Header, ImgUpload, ImgList, Footer,
 	},
 	name: 'ValuationResult',
-	computed:{
-		BuildingYear: function(){
-			const start = this.form1.BuildingFinishYear
-			const end = new Date().getFullYear()
-			if (start) {
-				return +end - (+start)
-			} else {
-				return 0
-			}
-		},
-	},
 	data () {
 		return {
 			ZZ: {},
 			loading : false,
-			formSize : 'small',
-			form1 : {
-				"OwnerName" : "",
-				"Location" : "",
-				"Usage" : "住宅",
-				"Area" : "",
-				"PledgePercentage" : "6.5",
-				Orientation: "",
-				TotalFloor: "",
-				Floor: "",
-				BuildingFinishYear: "",
-				Type: '', // 房屋性质
-			},
-			// 房本照片
-			HouseCertificateImageUrls:[],
-			C_HouseCertificateImageUrls: [],
-			// 上传报告
-			HouseValuationImageUrl: [],
-			C_HouseValuationImageUrl: [],
-
-			op1 : ['商品房','经济适用房','央产房','已购公房','其它'],
-			op2 : ['住宅','别墅','商业','公寓','办公'],
-			op3 : ['4','4.5','5','5.5','6','6.5','7','7.5','8'],
-			op4 : ['无','北','南','西','东','东北','西北','东南','西南'],
-
+			
+			HouseLocation1: '',
+			HouseArea: '',
+			HouseUsage: '',
+			HouseFloor: '',
+			HouseTotalFloor: '',
+			HouseOrientation: '',
+			HouseUnitPrice: '',
+			BuildingFinishYear:'',
 			//估值返回字段
 		 	"HouseAveragePrice": "",
             "HouseDealPeriod": "",
@@ -227,74 +121,43 @@ export default {
             "HouseTotalPrice": "",
             "HouseUnitPrice": "",
 
-            temp: false, // 是否估值成功
-            OrderNo: '', // 编号
 		}
+	},
+	computed:{
+		BuildingYear: function(){
+			const start = this.BuildingFinishYear
+			const end = new Date().getFullYear()
+			if (start) {
+				return +end - (+start)
+			} else {
+				return 0
+			}
+		},
 	},
 	mounted () {
 		this.ZZ = this.TT
+		this.valuation()
 	},
 	methods:{
 
-		// 修改用途
-		changeUsage(e) {
-			const { Usage } = this.form1
-			if (Usage == '住宅') {
-				this.form1.PledgePercentage = '6.5'
-			} else {
-				this.form1.PledgePercentage = '5'
-			}
-		},
-
-		// 修改面积
-		changeArea() {
-			const { Area } = this.form1
-			console.log(Area)
-			if (Area < 0 ) {
-				this.form1.Area = 0
-			}
-		},
-
 		// 估值
 		valuation () {
-			const id = null
-			const hid = null
-			const {
-				OwnerName,
-				Location,
-				Usage,
-				Area,
-				PledgePercentage,
-				Type,
-				Orientation,
-				TotalFloor,
-				Floor,
-				BuildingFinishYear,
-			} = this.form1
-
-			if (Location && Area && Usage) {
-
-			} else {
-				this.warn('请完成标红的项目！','Please complete the red input box!')
-				return
-			}
+			const historyId = this.$route.params.hid
 			const param = {
-				OwnerName,
-				Location,
-				Usage,
-				Area,
-				PledgePercentage,
-				Type,
-				Orientation,
-				TotalFloor,
-				Floor,
-				BuildingFinishYear,
+				historyId,
 			}
 			this.loading = true
-			this.pp('HouseValuation', param, res => {
+			this.pp('GetHouseValuationHistoryById', param, res => {
 				this.loading = false
 				if (res.ret) {
 					const {
+						HouseLocation1,
+						HouseArea,
+						HouseUsage,
+						HouseFloor,
+						HouseTotalFloor,
+						HouseOrientation,
+						HouseUnitPrice,
 						HouseAveragePrice,
 			            HouseDealPeriod,
 			            HouseNearbyName1,
@@ -307,8 +170,16 @@ export default {
 			            HouseNearbyAveragePrice4,
 			            HousePledgePrice,
 			            HouseTotalPrice,
-			            HouseUnitPrice,
+			            BuildingFinishYear,
 					} = res.data || {}
+					this.BuildingFinishYear = BuildingFinishYear
+					this.HouseLocation1 = HouseLocation1
+					this.HouseArea = HouseArea
+					this.HouseUsage = HouseUsage
+					this.HouseFloor = HouseFloor
+					this.HouseTotalFloor = HouseTotalFloor
+					this.HouseOrientation = HouseOrientation
+					this.HouseUnitPrice = HouseUnitPrice
 
 					this.HouseAveragePrice = HouseAveragePrice
 					this.HouseDealPeriod = HouseDealPeriod
@@ -321,8 +192,8 @@ export default {
 					this.HouseNearbyAveragePrice3 = HouseNearbyAveragePrice3
 					this.HouseNearbyAveragePrice4 = HouseNearbyAveragePrice4
 					this.HousePledgePrice = HousePledgePrice
-					this.HouseTotalPrice = HouseTotalPrice
-					this.HouseUnitPrice = HouseUnitPrice
+					this.HouseTotalPrice = parseFloat(HouseTotalPrice/10000)
+					
 				} else {
 					this.warn(res.msg)
 				}

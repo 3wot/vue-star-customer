@@ -155,7 +155,6 @@ export default {
 		},
 	},
 	mounted () {
-		console.log('进入页面')
 		this.ZZ = this.TT
 		this.changeType()
 	},
@@ -242,16 +241,23 @@ export default {
 		// 点击查看
 		gotoLook(order) {
 			console.log(order)
+			const hid = order.historyId
 			const { type } = this.$route.params
+			let name
 			if (type == 1) {
-				
+				name = 'valuationResult'
 			} else if (type == 2) {
-				
+				name = 'firstCheckResult'
 			} else if (type == 3) {
-				
+				name = 'firCheckResult'
+			}
+			if (hid) {
+				this.$router.push({ name, params: { hid }})	
+			} else {
+				this.warn('historyId is not defined')
 			}
 		},
-		
+
 
 	},
 }

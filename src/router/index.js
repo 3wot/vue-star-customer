@@ -66,19 +66,19 @@ export default new Router({
 			component: History
 		},
 		{
-			// 估值结果
+			// 自然人结果
 			path: '/firstCheckResult/:hid',
 			name: 'firstCheckResult',
 			component: FirstCheckResult
 		},
 		{
-			// 自然人结果
+			// 企业结果
 			path: '/firCheckResult/:hid',
 			name: 'firCheckResult',
 			component: FirCheckResult
 		},
 		{
-			// 企业结果
+			// 估值结果
 			path: '/valuationResult/:hid',
 			name: 'valuationResult',
 			component: ValuationResult

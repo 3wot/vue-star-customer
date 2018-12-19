@@ -6,37 +6,9 @@
 
 			<el-main class="c-main">
 				<div class="sec">
-					<p class="main-title"><span class="span-title">{{LL('input')[ZZ.KK]}}</span></p>
-					<el-form :size="formSize" label-width="170px" label-position="left">
-						<el-row :gutter="15">
-
-							<el-col :span="15">
-								<el-form-item :label="LL('c_name')[ZZ.KK]" class="label-danger">
-									<el-input v-model="BorrowerName" :placeholder="LL('c_name')[ZZ.KK]"></el-input>
-								</el-form-item>
-							</el-col>
-							<el-col :span="15">
-								<el-form-item :label="LL('c_id')[ZZ.KK]" class="label-danger">
-									<el-input v-model="BorrowerIDNO" :placeholder="LL('c_id')[ZZ.KK]"></el-input>
-								</el-form-item>
-							</el-col>
-							<el-col :span="15">
-								<el-form-item :label="LL('c_tel')[ZZ.KK]" class="label-danger">
-									<el-input v-model="BorrowerMobile" :placeholder="LL('c_tel')[ZZ.KK]"></el-input>
-								</el-form-item>
-							</el-col>
-
-							<el-col :span="24">
-								<el-button class="pull-left" type="primary" @click="firstCheck">{{LL('check')[ZZ.KK]}}</el-button>
-								<span v-if="loading" class="loading"><i class="el-icon-loading"></i></span>
-							</el-col>
-						</el-row>
-						
-
-					</el-form>
-				</div>
-				<div class="sec">
-					<!-- <p class="main-title"><span class="span-title">表格</span></p> -->
+					<p class="main-title"><span class="span-title">
+						&nbsp;<span v-if="loading" class="loading"><i class="el-icon-loading"></i></span>
+					</span></p>
 					<table class="show-table" cellpadding="0" cellspacing="0" border="1">
 						<tbody>
 							<tr>
@@ -63,49 +35,49 @@
 							</tr>
 							<tr>
 								<td>{{LL('court_case')[ZZ.KK]}}</td>
-								<td colspan="5">{{LawsuitInfo||'-'}}</td>
+								<td colspan="5">{{BorrowerLawsuitInfo||'-'}}</td>
 							</tr>
 							<tr>
 								<td>{{LL('court_exec')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{EnforcementInfo||'-'}}
-									<span v-if="HistoryId" @click="gotoDetail" class="first-detail">{{LL('detail')[ZZ.KK]}}</span>
+									{{BorrowerEnforcementInfo||'-'}}
+									<span v-if="BorrowerName" @click="gotoDetail" class="first-detail">{{LL('detail')[ZZ.KK]}}</span>
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('dis_exec')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{CreditInfo||'-'}}
+									{{BorrowerCreditInfo||'-'}}
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('network')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{P2PBlacklistInfo||'-'}}
+									{{BorrowerP2PBlacklistInfo||'-'}}
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('tax_no')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{TaxInfo||'-'}}
+									{{BorrowerTaxInfo||'-'}}
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('serious_no')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{CriminalInfo||'-'}}
+									{{BorrowerCriminalInfo||'-'}}
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('over_date')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{LoanExpirationInfo||'-'}}
+									{{BorrowerLoanExpirationInfo||'-'}}
 								</td>
 							</tr>
 							<tr>
 								<td>{{LL('muti_owe')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{MultipointLendingInfo||'-'}}
+									{{BorrowerMultipointLendingInfo||'-'}}
 								</td>
 							</tr>
 						</tbody>
@@ -142,65 +114,59 @@ export default {
 			"BorrowerName": "",
 
 			SecurityInfo: "",
-			LawsuitInfo: "",
-			EnforcementInfo: "",
-			CreditInfo: "",
-			P2PBlacklistInfo: "",
-			TaxInfo: "",
-			CriminalInfo: "",
-			LoanExpirationInfo: "",
-			MultipointLendingInfo: "",
-			HistoryId: '',
+			BorrowerLawsuitInfo: "",
+			BorrowerEnforcementInfo: "",
+			BorrowerCreditInfo: "",
+			BorrowerP2PBlacklistInfo: "",
+			BorrowerTaxInfo: "",
+			BorrowerCriminalInfo: "",
+			BorrowerLoanExpirationInfo: "",
+			BorrowerMultipointLendingInfo: "",
 
 	}
 },
 mounted () {
 	this.ZZ = this.TT
+	this.firstCheck()
 },
 methods:{
 
 	// 初审
 	firstCheck () {
-		const {
-			BorrowerIDNO,
-			BorrowerMobile,
-			BorrowerName,
-		} = this
+		const historyId = this.$route.params.hid
 		const param = {
-		  	"PersonName" : BorrowerName,
-		  	"PersonIDNO": BorrowerIDNO,
-  			"PersonMobile": BorrowerMobile,
-		}
-		if (!BorrowerIDNO || !BorrowerName || !BorrowerMobile) {
-			this.warn('请完成标红的项目！','Please complete the red input box!')
-			return
+			historyId,
 		}
 		this.loading = true
-		this.pp('GetPersonInfo', param, res => {
+		this.pp('GetPersonAuditionHistoryById', param, res => {
 			this.loading = false
 			if (res.ret) {
 				const {
+					BorrowerName,
+					BorrowerIDNO,
+					BorrowerMobile,
 					SecurityInfo,
-					LawsuitInfo,
-					EnforcementInfo,
-					CreditInfo,
-					P2PBlacklistInfo,
-					TaxInfo,
-					CriminalInfo,
-					LoanExpirationInfo,
-					MultipointLendingInfo,
-					HistoryId,
+					BorrowerLawsuitInfo,
+					BorrowerEnforcementInfo,
+					BorrowerCreditInfo,
+					BorrowerP2PBlacklistInfo,
+					BorrowerTaxInfo,
+					BorrowerCriminalInfo,
+					BorrowerLoanExpirationInfo,
+					BorrowerMultipointLendingInfo,
 				} = res.data || {}
-				this.HistoryId = HistoryId
+				this.BorrowerName = BorrowerName
+				this.BorrowerIDNO = BorrowerIDNO
+				this.BorrowerMobile = BorrowerMobile
 				this.SecurityInfo = SecurityInfo
-				this.LawsuitInfo = LawsuitInfo
-				this.EnforcementInfo = EnforcementInfo
-				this.CreditInfo = CreditInfo
-				this.P2PBlacklistInfo = P2PBlacklistInfo
-				this.TaxInfo = TaxInfo
-				this.CriminalInfo = CriminalInfo
-				this.LoanExpirationInfo = LoanExpirationInfo
-				this.MultipointLendingInfo = MultipointLendingInfo
+				this.BorrowerLawsuitInfo = BorrowerLawsuitInfo
+				this.BorrowerEnforcementInfo = BorrowerEnforcementInfo
+				this.BorrowerCreditInfo = BorrowerCreditInfo
+				this.BorrowerP2PBlacklistInfo = BorrowerP2PBlacklistInfo
+				this.BorrowerTaxInfo = BorrowerTaxInfo
+				this.BorrowerCriminalInfo = BorrowerCriminalInfo
+				this.BorrowerLoanExpirationInfo = BorrowerLoanExpirationInfo
+				this.BorrowerMultipointLendingInfo = BorrowerMultipointLendingInfo
 			} else {
 				this.warn(res.msg)
 			}
@@ -210,7 +176,7 @@ methods:{
 	// 去详情页面
 	gotoDetail() {
 		const id = this.BorrowerIDNO
-		const hid = this.HistoryId
+		const hid = this.$route.params.hid
 		const name = this.BorrowerName
 		let routeData = this.$router.resolve({
 		   	name: "firstDetail",
