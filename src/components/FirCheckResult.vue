@@ -55,7 +55,7 @@
 							<tr>
 								<td>{{LL('comp_bad')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{ BusinessInfo || '-'}}
+									{{ CorpBusinessInfo || '-'}}
 								</td>
 
 							</tr>
@@ -117,7 +117,7 @@
 								<td>{{LL('court_exec')[ZZ.KK]}}</td>
 								<td colspan="5">
 									{{ CorpCourtEnforcementInfo || '-'}}
-									<span v-if="HistoryId" @click="gotoDetail" class="first-detail">{{LL('detail')[ZZ.KK]}}</span>
+									<span v-if="CompanyName" @click="gotoDetail" class="first-detail">{{LL('detail')[ZZ.KK]}}</span>
 								</td>
 							</tr>
 							<tr>
@@ -129,7 +129,7 @@
 							<tr>
 								<td>{{LL('comp_risk')[ZZ.KK]}}</td>
 								<td colspan="5">
-									{{ RiskInfo || '-'}}
+									{{ CorpRiskInfo || '-'}}
 								</td>
 							</tr>
 		<!-- 					<tr>
@@ -174,7 +174,7 @@ export default {
 			BusinessEndDate: '',
 			Status: '',
 			Address: '',
-			BusinessInfo: '',
+			CorpBusinessInfo: '',
 			CorpAdministrativePenaltyInfo: '',
 			CorpSharePledgeInfo: '',
 			CorpMovablesPledgeInfo: '',
@@ -186,7 +186,7 @@ export default {
 			CorpCreditEnforcementInfo: '',
 			CorpCourtEnforcementInfo: '',
 			CorpCriminalInfo: '',
-			RiskInfo: '',
+			CorpRiskInfo: '',
 			CorpBusinessScope: '',
 			HistoryId: "",
 	}
@@ -216,7 +216,7 @@ methods:{
 					BusinessEndDate,
 					Status,
 					Address,
-					BusinessInfo,
+					CorpBusinessInfo,
 					CorpAdministrativePenaltyInfo,
 					CorpSharePledgeInfo,
 					CorpMovablesPledgeInfo,
@@ -228,7 +228,7 @@ methods:{
 					CorpCreditEnforcementInfo,
 					CorpCourtEnforcementInfo,
 					CorpCriminalInfo,
-					RiskInfo,
+					CorpRiskInfo,
 					CorpBusinessScope,
 				} = res.data || {}
 				this.CompanyName = CompanyName
@@ -239,7 +239,7 @@ methods:{
 				this.BusinessEndDate = BusinessEndDate
 				this.Status = Status
 				this.Address = Address
-				this.BusinessInfo = BusinessInfo
+				this.CorpBusinessInfo = CorpBusinessInfo
 				this.CorpAdministrativePenaltyInfo = CorpAdministrativePenaltyInfo
 				this.CorpSharePledgeInfo = CorpSharePledgeInfo
 				this.CorpMovablesPledgeInfo = CorpMovablesPledgeInfo
@@ -251,7 +251,7 @@ methods:{
 				this.CorpCreditEnforcementInfo = CorpCreditEnforcementInfo
 				this.CorpCourtEnforcementInfo = CorpCourtEnforcementInfo
 				this.CorpCriminalInfo = CorpCriminalInfo
-				this.RiskInfo = RiskInfo
+				this.CorpRiskInfo = CorpRiskInfo
 				this.CorpBusinessScope = CorpBusinessScope
 			} else {
 				this.warn(res.msg)
