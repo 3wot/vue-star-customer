@@ -78,7 +78,7 @@ export default {
 
 		// 后退
 		goBack () {
-			// const { name } = this.$route
+			const { name } = this.$route
 			// const { id, hid } = this.$route.params
 			// if (name == 'opList' || name == 'look') { // 返回首页
 			// 	this.$router.push({ name : 'index' })
@@ -87,8 +87,12 @@ export default {
 			// } else {
 			// 	this.$router.push({ name : 'opList', params: { id, hid }})
 			// }
-			// this.$router.go(-1)
-			this.$router.push({ name : 'index'})
+			// 
+			if (name == 'firstCheckResult' || name == 'firCheckResult' || name == 'valuationResult') {
+				this.$router.go(-1)
+			} else {
+				this.$router.push({ name : 'index'})	
+			}
 		},
 
 		gotoQuery(ty) {

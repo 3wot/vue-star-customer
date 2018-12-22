@@ -2,7 +2,9 @@
 	<div class="index">
 		<el-container class="c-outer">
 			
-			<Header @query="changeType" back="true" :title="LL('query_record')[ZZ.KK]"></Header>
+			<Header v-if="$route.params.type=='1'" @query="changeType" back="true" :title="LL('check_log1')[ZZ.KK]"></Header>
+			<Header v-if="$route.params.type=='2'" @query="changeType" back="true" :title="LL('check_log2')[ZZ.KK]"></Header>
+			<Header v-if="$route.params.type=='3'" @query="changeType" back="true" :title="LL('check_log3')[ZZ.KK]"></Header>
 
 		  	<el-main class="c-main">
 				<div class="table-outer">
