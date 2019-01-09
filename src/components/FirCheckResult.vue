@@ -37,7 +37,7 @@
 								<td colspan="1">{{LL('comp_from')[ZZ.KK]}}：</td>
 								<td colspan="2">{{time(BusinessStartDate) || '-'}}</td>
 								<td colspan="1">{{LL('comp_to')[ZZ.KK]}}：</td>
-								<td colspan="2">{{time(BusinessEndDate) || '-'}}</td>
+								<td colspan="2">{{time(BusinessEndDate) || '长期'}}</td>
 							</tr>
 							<tr>
 								<td colspan="1">{{LL('comp_status')[ZZ.KK]}}：</td>
@@ -269,11 +269,11 @@ methods:{
 				const day = time.getDate()
 				return year + '-' + month + '-' + day
 			} else {
-				return '-'
+				return ''
 			}
 			
 		} else {
-			return '-'
+			return ''
 		}
 		
 	},
