@@ -85,14 +85,14 @@ export default {
 			const param = {
 				historyId: hid,
 				name,
-				orderId,
+				// orderId,
 			}
 			if (id) {
 				param.idNo = id
 			} else {
 				param.idNo = null
 			}
-			this.pp('GetEnforcementInfoDetail2', param, res => {
+			this.pp('GetEnforcementInfoDetail3', param, res => {
 				if (res.ret) {
 					this.data = this.format(res.data)
 				} else {

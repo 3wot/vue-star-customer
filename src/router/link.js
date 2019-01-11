@@ -72,6 +72,7 @@ const urls = {
 	'GetCompanyAuditionHistory': 'GetCompanyAuditionHistory',
 	'GetEnforcementInfoDetailHistory': 'GetEnforcementInfoDetailHistory',
 	'GetEnforcementInfoDetail2': 'GetEnforcementInfoDetail2',
+	'GetEnforcementInfoDetail3': 'GetEnforcementInfoDetail3',
 
 	'GetHouseValuationHistoryById': 'GetHouseValuationHistoryById',
 	'GetPersonAuditionHistoryById': 'GetPersonAuditionHistoryById',
